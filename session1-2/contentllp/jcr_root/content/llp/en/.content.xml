@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2018-09-20T10:40:15.063+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/we-retail/settings/wcm/templates/redirect-page"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="en"
+        sling:resourceType="llp/components/structure/page-component-with-title"/>
+    <masterpage/>
+    <type1/>
+    <type2/>
+</jcr:root>

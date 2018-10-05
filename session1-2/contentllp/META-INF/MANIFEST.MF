@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Content-Package-Roots: /content/llp,/apps/llp,/conf/llp
+Content-Package-Type: mixed
+Content-Package-Id: my_packages:contentllp
+

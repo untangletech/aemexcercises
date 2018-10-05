@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Content-Package-Roots: /apps/llp
+Content-Package-Type: application
+Content-Package-Id: my_packages:session_2
+
