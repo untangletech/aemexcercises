@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Template">
+    <jcr:content
+        cq:lastModified="{Date}2018-09-20T16:00:19.061+05:30"
+        cq:lastModifiedBy="admin"
+        cq:templateType="/conf/llp/settings/wcm/template-types/master-with-title"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="from-master-with-title"
+        status="enabled"/>
+</jcr:root>
