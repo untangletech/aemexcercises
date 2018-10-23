@@ -1,0 +1,24 @@
+<div class="mdc-layout-grid c-case-listing__cases-list x-list">
+  <div class="mdc-layout-grid__inner">
+    {{#each serviceCases}}
+    <div class="mdc-layout-grid__cell animated slideInUp">
+        <div class="mdc-card c-case-listing__case-card" >
+            <div class="mdc-card__primary-action c-case-listing__case-wrapper js-case" data-case-id="{{caseId}}">
+                <div class="mdc-list-item__secondary-text c-case-listing__open-date c-case-listing__cases-text"><span>{{i18keyText 'cmms_casestatus.opened'}}: </span><span>{{{caseCreatedDate}}}</span></div>
+                <div class="mdc-list-item__primary-text c-case-listing__device-name c-case-listing__cases-text">{{{deviceMaterialsName}}}</div>
+                <div class="mdc-list-item__primary-text c-case-listing__cases-text c-case-listing__device-id">{{{deviceSerialNo}}}</div>
+                <div class="mdc-list-item__primary-text c-case-listing__cases-text c-case-listing__account-name">{{{accountName}}} </div>
+                <div class="mdc-list-item__primary-text c-case-listing__cases-text c-case-listing__case-id">{{{caseIdDisplayed}}} </div>
+                <div class="mdc-list-item__primary-text c-case-listing__cases-text c-case-listing__case-status"><span>{{{caseStatus}}}</span></div>
+                <div class="mdc-list-item__secondary-text c-case-listing__cases-text">{{{caseSubject}}} </div>
+                {{#ifCond feedbackBtn '!==' ''}}
+                <div class="c-case-listing__cases-feedback mdc-card__actions">
+                    <button class="js-case-feedback" data-case-id="{{caseId}}">{{{feedbackBtn}}}</button>
+                </div>
+                {{/ifCond}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

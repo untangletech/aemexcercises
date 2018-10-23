@@ -1,0 +1,237 @@
+{   
+    "parserOptions": {
+        "sourceType": "module",
+    },
+
+    "env": {
+        // Define globals exposed by modern browsers.
+        "browser": true,
+        // Enable Node.js environmental check
+        "node": true,
+        // Expose jQuery as global
+        "jquery": true,
+        // Enable es6 linting
+        "es6": true
+    },
+    "plugins": [
+        "jquery"
+    ],
+    // Inherit from recommended settings and
+    // add/update with your own overrides
+    // http://eslint.org/docs/rules/
+    "extends": "eslint:recommended",
+    "rules": {
+         // Enforce placing 'use strict' at the top function scope
+        "strict": [
+            "error"
+        ],
+
+        // Require capitalized names for constructor functions.
+        "new-cap": [
+            "error", { "capIsNewExceptions": ["Deferred"]}
+        ],
+
+        // Disallow null comparisons without type-checking operators
+        "no-eq-null": [
+            "error"
+        ],
+
+        // Enforce tab width of 2 spaces.
+        "indent": [
+            "error",
+            2
+        ],
+
+        // Prohibit use of == and != in favor of === and !==.
+        "eqeqeq": [
+            "error"
+        ],
+
+        // Enforce consistent brace style for all control statements
+        "curly": [
+            "error"
+        ],
+
+        // Support window style line breaks only
+        /*
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],*/
+
+        // Enforce use of single quotation marks for strings.
+        "quotes": [
+            "error",
+            "single", { "allowTemplateLiterals": true }
+        ],
+
+        // Prohibit use of explicitly undeclared variables.
+        "no-undef": [
+            "error"
+        ],
+
+        // Warn when variables are defined but never used.
+        "no-unused-vars": [
+            "error"
+        ],
+
+
+        "semi": [
+            "error",
+            "always"
+        ],
+
+        // Prohibit trailing whitespace.
+        "no-trailing-spaces": [
+            "warn"
+        ],
+
+        // More compliance with Sonar rules
+        // disallow the use of alert, confirm and prompt
+        "no-alert": "error",
+
+        // disallow the use of arguments.caller or arguments.callee
+        "no-caller": "error",
+
+        // disallow continue statements
+        "no-continue": "error",
+
+        // disallow the use of eval()-like methods
+        "no-implied-eval": "error",
+
+        // disallow deleting variables
+        "no-delete-var": "error",
+
+        // disallow unmodified loop conditions
+        "no-unmodified-loop-condition": "error",
+
+        // disallow if statements as the only statement in else blocks
+        "no-lonely-if": "error",
+
+        // require for-in loops to include an if statement
+        "guard-for-in": "error",
+
+        // require default cases in switch statements
+        "default-case": "warn",
+
+        // disallow void operators
+        "no-void": "error",
+
+        // disallow with operators
+        "no-with": "error",
+
+        // disallow Array constructors
+        "no-array-constructor": "error",
+
+        // disallow Object constructors
+        "no-new-object": "error",
+
+        // disallow reassigning const variables
+        "no-const-assign": "error",
+
+        // disallow bitwise operator
+        "no-bitwise": ["error", { "allow": ["~"] }],
+
+        // disallow calling some Object.prototype methods directly on objects
+        "no-prototype-builtins": "error",
+
+        // disallow comma operators
+        "no-sequences": "error",
+
+        // disallow the use of console
+        "no-console": "warn",
+
+        // disallow the use of debugger
+        "no-debugger": "error",
+
+        // disallow Warning Comments
+        "no-warning-comments": [2, { "terms": ["@cc_on", "@if", "@else", "@end"], "location": "anywhere" }],
+
+        // ES6
+        // require braces around arrow function bodies
+        "arrow-body-style": "warn",
+        // require parentheses around arrow function arguments
+        "arrow-parens": "warn",
+        // enforce consistent spacing before and after the arrow in arrow functions
+        "arrow-spacing": "warn",
+        // require destructuring from arrays and/or objects
+        "prefer-destructuring": "warn",
+        // require generator functions to contain yield
+        "require-yield": "error",
+
+        //disallow duplicate arguments in function definitions
+        "no-dupe-args": "error",
+
+        //disallow duplicate keys in object literals
+        "no-dupe-keys": "error",
+
+        //disallow empty functions
+        "no-empty-function": "error",
+
+        //enforce a maximum number of parameters in function definitions
+        "max-params": ["error", 7],
+
+        //Limit Cyclomatic Complexity
+        "complexity": ["error", 37],
+
+        //disallow function declarations and expressions inside loop statements
+        "no-loop-func": "error",
+
+        //disallow variable or function declarations in nested blocks
+        "no-inner-declarations": "error",
+
+        //Disallow Unnecessary Labels
+        "no-extra-label":"error",
+
+        //Disallow Multiline Strings
+        "no-multi-str": "error",
+
+        //enforce a maximum depth that blocks can be nested
+        "max-depth": ["error", 7],
+
+        //disallow octal literals
+        "no-octal": "error",
+
+        //Disallow Case Statement Fallthrough
+        "no-fallthrough": "error",
+
+        //disallow unnecessary semicolons
+        "no-extra-semi": "error",
+
+        //Disallow Primitive Wrapper Instances
+        "no-new-wrappers": "error",
+
+        //disallow unreachable code after return, throw, continue, and break statements
+        "no-unreachable":"error",
+
+        //enforce â€œforâ€ loop update clause moving the counter in the right direction.
+        "for-direction":"off",
+
+        //disallow comparisons where both sides are exactly the same
+        "no-self-compare": "error",
+
+        //require calls to isNaN() when checking for NaN
+        "use-isnan": "error",
+
+        //The base should be provided to "parseInt"
+        "radix": "warn",
+
+        //disallow variable redeclaration
+        "no-redeclare": "error",
+
+        //disallow assignments where both sides are exactly the same
+        "no-self-assign": "error",
+
+        "no-cond-assign": "warn",
+
+        "max-lines": ["error", 1220],
+
+        "comma-dangle": ["error", 'never'],
+
+
+        // jQuery
+        "jquery/no-ajax": [
+          "warn"
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+<div class="c-country-selector x-full-bg-white">
+    <header class="mdc-toolbar x-header c-country-selector__header">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <a href="#" target="_blank" class="dialog-logo">
+                <img src="../../../../../etc/designs/cmms/clientlibs/media/DiaLog_Logo.svg" alt="Dialog Logo"/>
+            </a>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <a href="#" target="_blank" class="roche-logo">
+                <img src="../../../../../etc/designs/cmms/clientlibs/media/Roche_logo.svg" alt="Roche Logo"/>
+            </a>
+        </section>
+    </header>
+    <h1 class="x-header__title c-country-selector__title">{{i18keyText 'cmms_countrySelector.header'}}</h1>
+    <div class="c-country-selector__support-text">
+        <p>Please select your country or region</p>
+    </div>
+    <div class="x-dropdown">
+        <div>
+            <button id="menu-button" class="x-dropdown__btn">
+                <span class="js-menu-btn-text">Country or region</span>
+                <i class="material-icons mdc-text-field__icon x-dropdown__icon">arrow_drop_down</i>
+            </button>
+            
+        </div>
+        <div id="toolbar" class="toolbar mdc-menu-anchor x-dropdown__container">
+            <div class="mdc-menu js-mdc-menu">
+                <ul class="mdc-menu__items mdc-list mdc-list--non-interactive" role="menu" aria-hidden="true" data-sly-list.country="${data.countries}">
+                    <li class="mdc-list-item" role="menuitem" tabindex="0" value="us/en" id="us/en" data-country="us/en">${country.name}</li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="0" value="${country.name}">${country.name}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="x-app__footer x-sticky-footer">
+        <button class="mdc-button mdc-button--raised c-country-selector__btn js-country-select" disabled="disabled" data-loginPath="http://www.google.com">
+        {{i18keyText 'cmms_countrySelector.select'}}
+        </button>
+    </div>
+</div>
+{{!-- <input type="text" name="countrySelector" id="countrySelector" value="true"/> --}}

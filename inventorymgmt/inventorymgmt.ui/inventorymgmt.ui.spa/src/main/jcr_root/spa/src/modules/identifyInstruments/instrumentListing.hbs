@@ -1,0 +1,44 @@
+{{#if instruments}} 
+<div class="mdc-layout-grid c-instruments__list x-list">
+  <div class="mdc-layout-grid__inner">
+    {{#each instruments}}
+    <div class="mdc-layout-grid__cell animated slideInUp">
+        <div class="mdc-card">
+            <div class="mdc-card__primary-action js-instrument" id="{{deviceId}}">
+                <span class="mdc-list-item__primary-text c-instruments__list__num">{{{deviceMaterialsName}}} </span>
+                <span class="mdc-list-item__secondary-text c-instruments__list__instrument">{{{deviceSerialNo}}}</span>
+                <span class="mdc-list-item__secondary-text c-instruments__list__account">{{{accountName}}} </span>
+            
+                {{#if assignedCaseId}}
+                    <div class="c-instruments__open-requests-container x-clearfix">
+                        <div class="x-assigned-request">
+                            <i class="material-icons">warning</i>
+                            <div class="x-assigned-request__info">
+                                <p class="x-assigned-request__label">{{i18keyText 'cmms_identifyinstrument.assignedRequest'}}</p>
+                                <p class="x-assigned-request__case-id">{{{assignedCaseId}}}</p>
+                            </div>
+                            <span class="x-open-request-btn js-open-requests" data-device-id="{{deviceId}}">{{i18keyText 'cmms_identifyInstruments.openRequests'}}</span>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+            {{!-- <div class="mdc-card__actions js-instrument-status">
+                <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon"
+                    aria-pressed="false"
+                    aria-label="Add to favorites"
+                    title="Add to favorites"
+                    data-toggle-on-content="favorite"
+                    data-toggle-on-label="Remove from favorites"
+                    data-toggle-off-content="favorite_border"
+                    data-toggle-off-label="Add to favorites">favorite_border</button>
+            </div> --}}
+        </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+{{else}}
+    {{#if message}}
+    <p class="x-error animated slideInUp">{{message}}</p>
+    {{/if}}
+{{/if}}

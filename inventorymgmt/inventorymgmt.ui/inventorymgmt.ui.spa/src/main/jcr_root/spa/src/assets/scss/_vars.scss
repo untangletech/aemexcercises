@@ -1,0 +1,36 @@
+// Variables
+// Fonts
+$roboto-font-path: "../font/roboto/" !default;
+$material-font-path: "../font/material/";
+// declaring variables
+$zindex-none: 0;
+$zindex-primary: 1;
+$zindex-loader: 4;
+//** Number of columns in the grid.
+$grid-columns: 12 !default;
+// font - style
+$font-html: 16px;
+$font-size-heading: 20px;
+$base-font-size: 16 !default;
+$font-size-medium: 14px;
+$font-size-small: 10px;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 700 !default;
+$font-roboto: 'Roboto',
+Arial,
+sans-serif;
+$font-roboto-medium: 'Roboto-Medium',
+Arial,
+sans-serif;
+// Responsive Breakpoints
+$tablet-min: 'min-width: 640px';
+$tablet-min-standard: 'min-width: 768px';
+$tablet-max: 'max-width: 1024px';
+$tablet-portrait: '${$tablet-min} and (orientation: portrait)';
+$tablet-landscape: '${$tablet-max} and (orientation: landscape)';
+$mobile-min: 'min-width: 360px';
+$mobile-max: 'max-width: 640px';
+$mobile-max-standard: 'max-width: 768px';
+$mobile-portrait: '${$mobile-min} and (orientation: portrait)';
+$mobile-landscape: '${$mobile-max} and (orientation: landscape)';

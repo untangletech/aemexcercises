@@ -1,0 +1,61 @@
+<div class="c-case-listing animate-appear">
+  <header class="mdc-toolbar c-case-listing__header mdc-toolbar--fixed x-header">
+    <div class="mdc-toolbar__row c-case-listing__header-row">
+      <section class="mdc-toolbar__section right-padding-0">
+          <span class="mdc-top-app-bar__title c-case-listing__title">{{i18keyText 'cmms_caselisting.supportRequest'}}</span>
+      </section>
+      <section class="mdc-toolbar__section mdc-toolbar__section--align-end mdc-toolbar__section--shrink-to-fit c-case-listing__search-btn">
+        <i class="material-icons mdc-text-field__icon js-cases-search-btn c-case-listing__search-btn" tabindex="0" role="button">search</i>
+      </section>
+    </div>
+    
+    <div class="mdc-toolbar__row c-case-listing__header-row c-case-listing__header-row-select">
+      <div class="c-case-listing__select-box">
+        <!--<select class="mdc-select__native-control c-case-listing__select js-cases-select">
+          <option value="openCases" selected>{{i18keyText 'cmms_caselisting.myOpenRequest'}}</option>
+          <option value="closedCases">
+            {{i18keyText 'cmms_caselisting.myClosedRequest'}}
+          </option>
+          <option value="allOpenCases">
+            {{i18keyText 'cmms_caselisting.allOpenRequest'}}
+          </option>
+          <option value="allClosedCases">
+            {{i18keyText 'cmms_caselisting.allClosedRequest'}}
+          </option>
+        </select>
+        <div class="mdc-line-ripple"></div>-->
+        <div class="x-dropdown">
+            <div>
+                <button id="menu-button" class="x-dropdown__btn">
+                    <span class="js-menu-btn-text">{{i18keyText 'cmms_caselisting.myOpenRequest'}}</span>
+                    <i class="material-icons mdc-text-field__icon x-dropdown__icon js-drop-down-icon x-hide">arrow_drop_down</i>
+                </button>
+                
+            </div>
+            <div id="toolbar" class="toolbar mdc-menu-anchor x-dropdown__container">
+                <div class="mdc-menu">
+                    <ul class="mdc-menu__items mdc-list mdc-list--non-interactive" role="menu" aria-hidden="true">
+                        <li class="mdc-list-item" role="menuitem" tabindex="0" value="openCases">{{i18keyText 'cmms_caselisting.myOpenRequest'}}</li>
+                        <li class="mdc-list-item" role="menuitem" tabindex="0" value="closedCases">{{i18keyText 'cmms_caselisting.myClosedRequest'}}</li>
+                        <li class="mdc-list-item c-case-listing__dropdown-line" tabindex="0" ><hr /></li>
+                        <li class="mdc-list-item" role="menuitem" tabindex="0" value="allOpenCases">{{i18keyText 'cmms_caselisting.allOpenRequest'}}</li>
+                        <li class="mdc-list-item" role="menuitem" tabindex="0" value="allClosedCases">{{i18keyText 'cmms_caselisting.allClosedRequest'}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="c-case-listing__cases-container js-cases-container">
+  </main>
+  <div class="c-case-detail js-case-detail-container"></div>
+    
+  <footer class="x-sticky-footer c-case-listing__footer">
+    <button class="mdc-button mdc-button--unelevated c-case-listing__case-req-btn js-create-case-btn">
+      <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+      {{i18keyText 'cmms_caselisting.raiseRequest'}}
+    </button>
+  </footer>
+</div>
+

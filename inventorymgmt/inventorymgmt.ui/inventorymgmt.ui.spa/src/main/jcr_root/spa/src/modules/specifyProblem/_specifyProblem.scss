@@ -1,0 +1,257 @@
+$footer-height: 68;
+.specify-problem-container {
+    background-color: $clr-white;
+    @include padding(84px 16px 0 16px);
+    padding-bottom: convert-in-rem($footer-height + 8);
+    margin-top: 0;
+    &__title {
+        @include font-family-medium();
+        margin-bottom: convert-in-rem(24);
+        font-size: $font-size-medium;
+        color: $clr-light-grey-text;
+    }
+    &__title.photo-title {
+        margin-bottom: convert-in-rem(14);
+    }
+    .instrument-name,
+    .instrument-location {
+        font-size: $font-size-medium;
+        color: $clr-light-grey-text;
+        margin-top: convert-in-rem(6);
+    }
+    .instrument-name,
+    .instrument-location,
+    .intrument-id {
+        line-height: convert-in-rem(20);
+    }
+    .text-field-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        @include mdc-text-field-line-ripple-color($clr-link);
+        margin-bottom: 0;
+        @media ($tablet-min-standard) {
+            width: convert-in-rem(328);
+        }
+        .mdc-text-field__input:-webkit-autofill + .mdc-floating-label {
+            transform: translateY(-50%) scale(0.75);
+        }
+        .mdc-text-field--box {
+            margin-bottom: 0;
+            margin-top: convert-in-rem(24);
+            input {
+                color: $clr-placeholder;
+                -webkit-text-fill-color: $clr-placeholder;
+            }
+            input[type=text]:focus:not([readonly])+label {
+                color: $clr-light-black;
+            }
+            label::after {
+                content: none;
+            }
+            &.text-area-field {
+                height: auto;
+                max-height: 250px;
+                textarea {
+                    line-height: convert-in-rem(24);
+                    padding-top: convert-in-rem(20);
+                    resize: none;
+                    max-height: 250px;
+                    &.mdc-floting-text-area {
+                        padding-bottom: convert-in-rem(12);
+                    }
+                }
+                .mdc-floating-label--float-above {
+                    margin-bottom: 10px;
+                    background-color:  $clr-text-area-label;
+                }
+                .mdc-floating-label-text-area {
+                    top: 15px;
+                    bottom: auto;
+                    left: 12px;
+                    padding: convert-in-rem(12) convert-in-rem(8) convert-in-rem(8) convert-in-rem(0);
+                    &.mdc-floating-label-top {
+                        width: 100%;
+                    }
+                }
+            }
+            .mdc-floating-label {
+                left: 12px;
+            }
+        }
+        &:first-of-type .mdc-text-field--box,
+        .contactNameField {
+            margin-top: 0;
+        }
+        i.material-icons {
+            color: $clr-light-grey-text;
+        }
+        .mdc-text-field-helper-text {
+            margin: 0;
+            text-align: right;
+            color: $clr-placeholder;
+        }
+        .contact-phn-helper-text{
+            text-align: left;
+        }
+    }
+    &__radio-block {
+        width: 100%;
+        margin-bottom: convert-in-rem(12);
+        .mdc-radio {
+            right: 10;
+        }
+        label {
+            font-size: convert-in-rem(16);
+            line-height: convert-in-rem(20);
+        }
+    }
+    .mdc-text-field__input {
+        width: 100%;
+        line-height: convert-in-rem(20);
+        padding-left: convert-in-rem(12);
+        @media ($tablet-min-standard) {
+            width: convert-in-rem(328);
+        }
+    }
+    legend {
+        margin-bottom: convert-in-rem(30);
+    }
+    fieldset {
+        margin-bottom: convert-in-rem(14);
+    }
+    hr {
+        border: 1px solid $clr-separator;
+        margin: convert-in-rem(30) 0;
+        clear: both;
+    }
+    .mdc-text-field--box.mt-18,
+    hr.mt-18 {
+        margin-top: convert-in-rem(18);
+    }
+    .assigned-request {
+        margin-top: convert-in-rem(25);
+        i.material-icons {
+            float: left;
+            padding: 0;
+        }
+        &__label {
+            color: $clr-light-grey-text;
+            margin-bottom: convert-in-rem(6);
+        }
+        .open-request-btn {
+            @include font-family-medium();
+            @include mdc-button-ink-color($clr-link);
+            margin: convert-in-rem(16);
+            float: right;
+        }
+    }
+    .image-list {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .image-list li {
+        padding: 0;
+        display: inline-block;
+    }
+    .image-list li img {
+        width: convert-in-rem(162);
+        height: convert-in-rem(160);
+        object-fit: cover;
+        margin-right: convert-in-rem(4);
+        margin-bottom: convert-in-rem(4);
+    }
+    .image-list li:nth-of-type(even) img {
+        margin-right: 0;
+        @media ($tablet-min) {
+            margin-right: convert-in-rem(4);
+        }
+    }
+    .photo-text {
+        margin-bottom: convert-in-rem(24);
+    }
+    input[type="file"] {
+        display: none;
+    }
+    .custom-file-upload {
+        display: inline-block;
+        cursor: pointer;
+        width: convert-in-rem(162);
+        height: convert-in-rem(160);
+        background-color: $clr-light-grey;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i.material-icons {
+            @include mdc-icon-button-ink-color($clr-link);
+            @include mdc-icon-button-size(50px);
+        }
+    }
+    .c-instruments__open-requests-container {
+        margin-top: convert-in-rem(25);
+        padding: 0;
+    }
+    &__tnc-container {
+        margin: convert-in-rem(20) 0 convert-in-rem(30) 0;
+        .mdc-form-field {
+            @include mdc-checkbox-ink-color($clr-white);
+            display: flex;
+            align-items: baseline;
+            position: relative;
+            left: -11;
+        }
+        label {
+            font-size: convert-in-rem(16);
+            line-height: 20px;
+            color: #333;
+            width: 100%;
+            position: relative;
+            top: -16px;
+            padding-left: 20px;
+        }
+        .read-tnc-btn {
+            float: right;
+            @include font-family-medium();
+            @include mdc-button-ink-color($clr-link);
+        }
+    }
+}
+
+.specify-problem-footer {
+    height: convert-in-rem($footer-height);
+    background-color: $clr-white;
+    opacity: 0.9;
+    &__cancel-btn {
+        float: left;
+        @include font-family-medium();
+        @include mdc-button-ink-color($clr-link);
+        margin: convert-in-rem(16);
+        text-transform: none;
+    }
+    &__send-btn {
+        float: right;
+        @include font-family-medium();
+        @include mdc-button-container-fill-color($clr-link);
+        @include mdc-button-icon-color($clr-white);
+        @include mdc-button-ink-color($clr-white);
+        margin: convert-in-rem(16);
+        text-transform: none;
+        &:disabled {
+            background-color: $clr-btn-primary;
+            color: $clr-white;
+            opacity: .25;
+        }
+    }
+}
+
+.x-header {
+    &__section {
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+    &__title {
+        margin: auto;
+    }
+}

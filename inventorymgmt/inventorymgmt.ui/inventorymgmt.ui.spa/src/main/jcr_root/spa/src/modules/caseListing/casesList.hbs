@@ -1,0 +1,33 @@
+<div class="mdc-layout-grid c-case-listing__cases-list x-list">
+  <div class="mdc-layout-grid__inner">
+    {{#each serviceCases}}
+    <div class="mdc-layout-grid__cell animated slideInUp">
+        <div class="mdc-card c-case-listing__case-card">
+            <div class="mdc-card__primary-action c-case-listing__case-wrapper js-case" data-case-id="{{serviceCases.id}}">
+                <div class="mdc-list-item__secondary-text c-case-listing__open-date c-case-listing__cases-text"><span>{{i18keyText 'cmms_casestatus.opened'}}: </span><span>{{formatDate serviceCases.createdDate}}</span></div>
+                <div class="mdc-list-item__primary-text c-case-listing__device-name c-case-listing__cases-text">{{serviceCases.devices.materials.name}}</div>
+                <div class="mdc-list-item__primary-text c-case-listing__cases-text c-case-listing__device-id">{{serviceCases.devices.serialNo}}</div>
+                <div class="mdc-list-item__primary-text c-case-listing__cases-text c-case-listing__account-name">{{serviceCases.accounts.name}} </div>
+                <div class="mdc-list-item__primary-text c-case-listing__cases-text c-case-listing__case-id">{{serviceCases.id}} </div>
+                <div class="mdc-list-item__primary-text c-case-listing__cases-text c-case-listing__case-status">
+                    <span>{{#ifCond serviceCases.status '===' 'open'}}
+                        {{#ifCond serviceCases.recordType '===' 'inquiry'}}{{caseStatusi18 "inProgress"}}
+                        {{else}}{{#ifCond serviceCases.recordType '===' 'complaint'}}{{caseStatusi18 "inProgress"}}
+                        {{else}}{{caseStatusi18 serviceCases.status}}{{/ifCond}}
+                        {{/ifCond}}
+                    {{else}}{{caseStatusi18 serviceCases.status}}{{/ifCond}}</span>
+                </div>
+                <div class="mdc-list-item__secondary-text c-case-listing__cases-text c-case-listing__case-subject">{{serviceCases.subject}} </div>
+                {{#ifCond ../selectedCaseType '===' 'closedCases'}}
+                {{#unless serviceCases.survey.rating}}
+                <div class="c-case-listing__cases-feedback mdc-card__actions">
+                    <button class="js-case-feedback" data-case-id="{{serviceCases.id}}">{{i18keyText 'cmms_caselisting.feedbackBtn'}}</button>
+                </div>
+                {{/unless}}
+                {{/ifCond}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.c-country-selector {
+    &__header{
+        flex-direction: row;
+        padding: convert-in-rem(16);
+        margin-bottom: convert-in-rem(48);
+        .mdc-top-app-bar__section{
+            padding: 0;
+        }
+        .dialog-logo>img{
+            width: convert-in-rem(114);
+            height: convert-in-rem(30);
+        }
+        .roche-logo>img{
+            width: convert-in-rem(66);
+            height: convert-in-rem(36);
+        }
+    }
+    &__title{
+        font-size: convert-in-rem(28);
+        line-height: convert-in-rem(33);
+    }
+    &__support-text {
+        padding: 42px 16px 24px;
+        p {
+            @include font-size(14px);
+            @include font-family-medium();
+            @include line-height(20px);
+            color: $clr-light-grey-text;
+            max-width: 328px;
+            text-align: left;
+            margin: 0 auto;
+            width: 100%;
+            @media (max-width: 767px) and (orientation: portrait) {
+                max-width: none;
+            }
+        }
+    }
+    .x-app__footer {
+        position: absolute;
+        right: 0;
+    }
+    .x-dropdown {
+        padding: 0 16px;
+    }
+}

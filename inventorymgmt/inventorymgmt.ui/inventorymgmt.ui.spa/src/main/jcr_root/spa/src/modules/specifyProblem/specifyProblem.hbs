@@ -1,0 +1,206 @@
+<div class="animate-appear">
+    <header class="mdc-toolbar mdc-toolbar--fixed x-header">
+        <div class="mdc-toolbar__row">
+            <button class="mdc-icon-button material-icons x-header__btn js-back" data-navigate-to="{{#if qrCode}}identifyInstruments{{else}}identifyInstruments{{/if}}">arrow_back</button>
+            <section class="mdc-toolbar__section x-header__section">
+                <span class="mdc-top-app-bar__title x-header__title">{{i18keyText 'cmms_specifyproblem.header'}}</span>
+            </section>
+        </div>
+    </header>
+    <main class="mdc-toolbar-fixed-adjust specify-problem-container">
+        <section class="instrument-info">
+            <h3 class="specify-problem-container__title">{{i18keyText 'cmms_specifyproblem.instrumentInformation'}}</h3>
+            <div class="intstrument-details">
+                <p class="intrument-id">{{deviceMaterialsName}}</p>
+                <p class="instrument-name">{{deviceSerialNo}}</p>
+                <p class="instrument-location">{{accountName}}</p>
+            </div>
+            {{#if assignedCaseId}}
+                <div class="c-instruments__open-requests-container x-clearfix">
+                    <div class="x-assigned-request" data-case-id="{{assignedRequest.serviceCases.id}}">
+                        <i class="material-icons">warning</i>
+                        <div class="x-assigned-request__info">
+                            <p class="x-assigned-request__label">{{i18keyText 'cmms_identifyinstrument.assignedRequest'}}</p>
+                            <p class="x-assigned-request__case-id">{{{assignedRequest.serviceCases.id}}}</p>
+                        </div>
+                    </div>
+                    
+                    <span class="x-open-request-btn js-device-open-request" data-device-id="{{deviceId}}">{{i18keyText 'cmms_identifyInstruments.openRequests'}}</span>
+                </div>        
+            {{/if}}
+            <hr/>
+        </section>
+        <section class="request-details">
+            <form id="caseForm" enctype="multipart/form-data">
+                <h3 class="specify-problem-container__title">{{i18keyText 'cmms_specifyproblem.requestLabel'}}</h3>
+                <fieldset>
+                    <legend>{{i18keyText 'cmms_specifyproblem.typeRequest'}}</legend>
+                    <div class="mdc-form-field specify-problem-container__radio-block ">
+                        <div class="mdc-radio">
+                            <input class="mdc-radio__native-control" type="radio" id="request_1" name="requestType" value="Application/Reagent" checked>
+                            <div class="mdc-radio__background">
+                                <div class="mdc-radio__outer-circle"></div>
+                                <div class="mdc-radio__inner-circle"></div>
+                            </div>
+                        </div>
+                        <label for="request_1">{{i18keyText 'cmms_specifyproblem.application'}}</label>
+                    </div>
+                    <div class="mdc-form-field specify-problem-container__radio-block">
+                        <div class="mdc-radio">
+                            <input class="mdc-radio__native-control" type="radio" id="request_2" name="requestType" value="Hardware">
+                            <div class="mdc-radio__background">
+                                <div class="mdc-radio__outer-circle"></div>
+                                <div class="mdc-radio__inner-circle"></div>
+                            </div>
+                        </div>
+                        <label for="request_2">{{i18keyText 'cmms_specifyproblem.hardware'}}</label>
+                    </div>
+                    <div class="mdc-form-field specify-problem-container__radio-block">
+                        <div class="mdc-radio">
+                            <input class="mdc-radio__native-control" type="radio" id="request_3" name="requestType" value="Software">
+                            <div class="mdc-radio__background">
+                                <div class="mdc-radio__outer-circle"></div>
+                                <div class="mdc-radio__inner-circle"></div>
+                            </div>
+                        </div>
+                        <label for="request_3">{{i18keyText 'cmms_specifyproblem.software'}}</label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>{{i18keyText 'cmms_specifyproblem.systemDown'}}</legend>
+                    <div class="mdc-form-field specify-problem-container__radio-block">
+                        <div class="mdc-radio">
+                            <input class="mdc-radio__native-control" type="radio" id="system_1" name="systemDownType" value="No" checked>
+                            <div class="mdc-radio__background">
+                                <div class="mdc-radio__outer-circle"></div>
+                                <div class="mdc-radio__inner-circle"></div>
+                            </div>
+                        </div>
+                        <label for="system_1">{{i18keyText 'cmms_specifyproblem.noRadio'}}</label>
+                    </div>
+                    <div class="mdc-form-field specify-problem-container__radio-block">
+                        <div class="mdc-radio">
+                            <input class="mdc-radio__native-control" type="radio" id="system_2" name="systemDownType" value="Yes - WITH backup">
+                            <div class="mdc-radio__background">
+                                <div class="mdc-radio__outer-circle"></div>
+                                <div class="mdc-radio__inner-circle"></div>
+                            </div>
+                        </div>
+                        <label for="system_2">{{i18keyText 'cmms_specifyproblem.yesRadioWith'}}</label>
+                    </div>
+                    <div class="mdc-form-field specify-problem-container__radio-block">
+                        <div class="mdc-radio">
+                            <input class="mdc-radio__native-control" type="radio" id="system_3" name="systemDownType" value="Yes - WITHOUT backup">
+                            <div class="mdc-radio__background">
+                                <div class="mdc-radio__outer-circle"></div>
+                                <div class="mdc-radio__inner-circle"></div>
+                            </div>
+                        </div>
+                        <label for="system_3">{{i18keyText 'cmms_specifyproblem.yesRadioWithout'}}</label>
+                    </div>
+                    </fieldset>
+                    <div class="text-field-container">
+                        <div class="mdc-text-field text-field mdc-text-field--box">
+                            <input type="text" id="subject" class="mdc-text-field__input" maxlength="100" required>
+                            <label class="mdc-floating-label" for="subject">{{i18keyText 'cmms_specifyproblem.subjectLabel'}}</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                        <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent">
+                            <span class="subjectCount">0</span>/100
+                        </p>
+                    </div>
+                    <div class="text-field-container">
+                        <div class="mdc-text-field text-field mdc-text-field--box text-area-field">
+                          <textarea id="description" class="mdc-text-field__input" required></textarea>
+                          <label class="mdc-floating-label" for="description">{{i18keyText 'cmms_specifyproblem.descriptionLabel'}}</label>
+                          <div class="mdc-line-ripple"></div>
+                        </div>
+                        <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent">
+                            <span class="descriptionCount">0</span>/140
+                        </p>
+                    </div>
+                    <hr class="mt-18"/>
+                    <h3 class="specify-problem-container__title">{{i18keyText 'cmms_specifyproblem.contactInformation'}}</h3>
+                    <div class="text-field-container">
+                        <div class="mdc-text-field text-field mdc-text-field--box mdc-text-field--with-trailing-icon contactNameField">
+                            <input type="text" id="contactName" class="mdc-text-field__input" required value="{{contactName}}" maxlength="100">
+                            <label class="mdc-floating-label" for="contactName">{{i18keyText 'cmms_specifyproblem.contact'}}</label>
+                            <i class="material-icons mdc-text-field__icon">edit</i>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                    </div>
+                    <div class="text-field-container">
+                        <div class="mdc-text-field text-field mdc-text-field--box mdc-text-field--disabled">
+                            <input type="text" id="emailID" class="mdc-text-field__input" value="{{emailID}}" disabled="disabled">
+                            <label class="mdc-floating-label" for="emailID">{{i18keyText 'cmms_specifyproblem.emailAddress'}}</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                    </div>
+                    <div class="text-field-container">
+                        <div class="mdc-text-field text-field mdc-text-field--box mdc-text-field--with-trailing-icon">
+                            <input type="text" id="contactPhn" class="mdc-text-field__input" required value="{{contactPhn}}" maxlength="30">
+                            <label class="mdc-floating-label" for="contactPhn">{{i18keyText 'cmms_specifyproblem.phoneNo'}}</label>
+                            <i class="material-icons mdc-text-field__icon">edit</i>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                        <p class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent contact-phn-helper-text">
+                            {{i18keyText 'cmms_specifyproblem.phoneNoHelperText'}}
+                        </p>
+                    </div>
+                    <hr/>
+                    <div class="specify-problem-container__photo-container">
+                        <h3 class="specify-problem-container__title photo-title">{{i18keyText 'cmms_specifyproblem.photos'}}</h3>
+                        <p class="photo-text">{{i18keyText 'cmms_specifyproblem.photoInfo'}}</p>
+                        <ul id="image-list" class="image-list">
+                            <label for="images" class="custom-file-upload">
+                                <i class="mdc-icon-button material-icons">add_circle</i>
+                                <input type="file" name="images" accept="image/jpg, image/jpeg, image/png" id="images" />
+                            </label>
+                        </ul>
+                    </div>
+                    <div class="specify-problem-container__tnc-container">
+                        <div class="mdc-form-field">
+                            <div class="mdc-checkbox">
+                                <input type="checkbox" class="mdc-checkbox__native-control" id="tncCheckbox"/>
+                                <div class="mdc-checkbox__background">
+                                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                    <path class="mdc-checkbox__checkmark-path" fill="none"
+                                        d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                                </svg>
+                                <div class="mdc-checkbox__mixedmark"></div>
+                                </div>
+                            </div>
+                            <label for="tncCheckbox">{{i18keyText 'cmms_specifyproblem.tncCheckbox'}}</label>
+                        </div>
+                        <div class="mdc-button read-tnc-btn">{{i18keyText 'cmms_specifyproblem.read'}}</div>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <section id="js-image-container"></section>
+        <footer class="x-sticky-footer specify-problem-footer">
+            <button class="mdc-button specify-problem-footer__cancel-btn js-back" data-navigate-to="caseListing">{{i18keyText 'cmms_specifyproblem.cancel'}}</button>
+            
+            <button class="mdc-button mdc-button--raised specify-problem-footer__send-btn" disabled>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">send</i>
+                {{i18keyText 'cmms_specifyproblem.send'}}
+            </button>
+        </footer>
+    </div>
+</div>
+<aside id="tnc-modal" class="mdc-dialog x-messageDialog" role="alertdialog" aria-describedby="x-messageDialog-description">
+  <div class="mdc-dialog__surface x-messageDialog__surface">
+    <header class="mdc-dialog__header">
+      <span class="mdc-dialog__header__title x-messageDialog__title">
+        {{i18keyText 'cmms_specifyproblem.tnc'}}
+      </span>
+    </header>
+    <section id="x-messageDialog-description" class="mdc-dialog__body x-messageDialog__body modal-height">
+      {{{i18keyText 'cmms_specifyproblem.tncPlaceholder'}}}
+    </section>
+    <footer class="mdc-dialog__footer">
+      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">{{i18keyText 'cmms_confirmationPopup.ok'}}</button>
+    </footer>
+  </div>
+  <div class="mdc-dialog__backdrop"></div>
+</aside>
