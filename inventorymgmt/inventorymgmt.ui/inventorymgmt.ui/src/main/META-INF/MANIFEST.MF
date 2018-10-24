@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Content-Package-Roots: /apps/inventorymgmt/components
+Content-Package-Roots: /apps/inventorymgmt
 Content-Package-Type: application
-Content-Package-Id: my_packages:componentpkg:1.0
+Content-Package-Id: my_packages:inventorymgmt
 
