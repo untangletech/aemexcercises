@@ -1,0 +1,131 @@
+@mixin heading-title {
+    color: $clr-dark-grey-text;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-heading;
+}
+
+@mixin clearfix {
+    clear: both;
+}
+
+@mixin global-shadow {
+    -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+    -moz-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+@mixin margin($args) {
+    margin: convert-to-rem($args);
+}
+
+@mixin padding($args) {
+    padding: convert-to-rem($args);
+}
+
+@mixin margin-left($args) {
+    margin-left: convert-to-rem($args);
+}
+
+@mixin margin-right($args) {
+    margin-right: convert-to-rem($args);
+}
+
+@mixin margin-top($args) {
+    margin-top: convert-to-rem($args);
+}
+
+@mixin margin-bottom($args) {
+    margin-bottom: convert-to-rem($args);
+}
+
+@mixin padding-left($args) {
+    padding-left: convert-to-rem($args);
+}
+
+@mixin padding-right($args) {
+    padding-right: convert-to-rem($args);
+}
+
+@mixin padding-top($args) {
+    padding-top: convert-to-rem($args);
+}
+
+@mixin padding-bottom($args) {
+    padding-bottom: convert-to-rem($args);
+}
+
+@mixin font-size($args) {
+    font-size: convert-to-rem($args);
+}
+
+@mixin width($args) {
+    width: convert-to-rem($args);
+}
+
+@mixin height($args) {
+    height: convert-to-rem($args);
+}
+
+@mixin min-width($args) {
+    min-width: convert-to-rem($args);
+}
+
+@mixin min-height($args) {
+    min-height: convert-to-rem($args);
+}
+
+@mixin max-width($args) {
+    max-width: convert-to-rem($args);
+}
+
+@mixin max-height($args) {
+    max-height: convert-to-rem($args);
+}
+
+@mixin line-height($args) {
+    line-height: convert-to-rem($args);
+}
+
+@mixin letter-spacing($args) {
+    letter-spacing: convert-to-rem($args);
+}
+
+@mixin top($args) {
+    top: convert-to-rem($args);
+}
+
+@mixin left($args) {
+    left: convert-to-rem($args);
+}
+
+@mixin bottom($args) {
+    bottom: convert-to-rem($args);
+}
+
+@mixin right($args) {
+    right: convert-to-rem($args);
+}
+
+@mixin background-gradient($args...) {
+    background: -moz-linear-gradient($args);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient($args);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient($args);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+@mixin icon-font-size($args) {
+    font-size: $args;
+    height: $args;
+    width: $args;
+}
+
+@mixin font-family-medium() {
+    font-family: $font-roboto-medium;
+    letter-spacing: 0;
+}
+@mixin break-word() {
+    overflow: auto;
+    word-wrap: break-word;
+}

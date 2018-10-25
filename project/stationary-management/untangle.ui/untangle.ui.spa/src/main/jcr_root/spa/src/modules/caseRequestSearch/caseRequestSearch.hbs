@@ -1,0 +1,12 @@
+<div class="animate-appear c-case-listing">
+  <header class="mdc-toolbar mdc-toolbar--fixed x-header c-case-search">
+    <div class="mdc-toolbar__row">
+      <button class="mdc-icon-button material-icons x-header__btn js-back" data-navigate-to="caseListing">arrow_back</button>
+      <label class="x-hidden" for="searchCasesInput">{{i18keyText 'cmms_caselisting.search'}}</label>
+      <input type="text" class="c-case-search__text-field" id="searchCasesInput" name="search" placeholder="{{i18keyText 'cmms_caselisting.search'}}">
+    </div>
+  </header>
+  <main class="c-cases-search c-case-search__cases-container js-cases-search-listing">
+  </main>
+  <div class="c-case-detail js-case-detail-container"></div>
+</div>

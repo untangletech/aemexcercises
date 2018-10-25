@@ -1,0 +1,28 @@
+.c-instruments {
+    padding-top: 144px;
+    @media (min-width: 767px) {
+        padding-top: 152px;
+    }
+    @media (max-width: 959px) and (orientation: landscape) {
+        padding-top: 144px;
+    }
+    &__list {
+        &__num {
+            @include font-size(16px);
+            line-height: convert-in-rem(20);
+        }
+        &__instrument,
+        &__account {
+            @include font-size(14px);
+            display: block;
+        }
+        &__account {
+            text-transform: capitalize;
+        }
+    }
+}
+.x-search{
+    .search-input{
+        line-height: convert-in-rem(20);
+    }
+}

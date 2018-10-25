@@ -1,0 +1,177 @@
+.c-case-listing {
+    &__title {
+        line-height: convert-in-rem(24);
+        font-family: $font-roboto-medium;
+        letter-spacing: 0;
+        padding-left: convert-in-rem(27);
+    }
+    &__search-btn {
+        color: $clr-light-grey-text;
+        cursor: pointer;
+    }
+    &__header {
+        @include mdc-top-app-bar-fill-color($clr-white);
+        color: $clr-light-black;
+    }
+    &__case-card {
+        color: $clr-light-black;
+    }
+    &__header-row {
+        @include padding(12px);
+    }
+    &__header-row-select {
+        @include padding(0 16px 12px);
+    }
+    &__select-box {
+        width: convert-in-rem(350);
+        margin: 0 auto;
+        border-radius: 2px;
+        @include mdc-select-bottom-line-color(transparent);
+        @include mdc-select-container-fill-color($clr-light-grey);
+        @include mdc-select-ink-color($clr-black);
+        .x-dropdown {
+            .mdc-menu {
+                margin-top: convert-in-rem(4);
+            }
+            &__container,
+            .mdc-menu,
+            &__btn {
+                max-width: convert-in-rem(348);
+            }
+            &__btn {
+                @include padding(18px);
+                line-height: convert-in-rem(20);
+                color: $clr-light-black;
+                font-family: $font-roboto;
+                cursor: pointer;
+            }
+            &__icon {
+                top: convert-in-rem(15);
+            }
+        }
+        .mdc-menu__items {
+            padding-bottom: convert-in-rem(14);
+            padding-top: convert-in-rem(11);
+            .mdc-list-item {
+                @include padding(0 12px);
+                line-height: convert-in-rem(20);
+                color: $clr-light-black;
+            }
+        }
+    }
+    &__dropdown-line {
+        height: convert-in-rem(25);
+        cursor: default;
+        hr {
+            width: 100%;
+            color: $clr-separator;
+            border-color: $clr-separator;
+            opacity: 0.3;
+        }
+    }
+    &__dropdown-line.mdc-list-item:before,
+    &__dropdown-line.mdc-list-item:active:before {
+        background-color: $clr-white;
+    }
+    &__select-box:hover {
+        @include mdc-select-bottom-line-color(transparent);
+    }
+    &__select {
+        -webkit-appearance: none;
+        @include padding-top(6px);
+    }
+    &__cases-container {
+        @include margin-top(126px);
+        @include padding-bottom(68px);
+        @media ($tablet-min-standard) {
+            @include margin-top(136px);
+        }
+    }
+    &__cases-text {
+        @include margin-bottom(12px);
+    }
+    &__open-date {
+        @include font-size(10px);
+        text-align: right;
+    }
+    &__device-name {
+        @include font-family-medium();
+        font-size: convert-in-rem(20);
+    }
+    &__device-id {
+        line-height: convert-in-rem(20);
+    }
+    &__account-name,
+    &__case-id,
+    &__case-status {
+        line-height: convert-in-rem(24);
+    }
+    &__case-subject {
+        color: $clr-light-grey-text;
+    }
+    &__case-id {
+        @include margin-top(12px);
+    }
+    &__cases-list {
+        @include padding(8px);
+        @media ($tablet-min) {
+            @include padding(16px);
+        }
+    }
+    &__case-status-dot {
+        display: inline-block;
+        width: convert-in-rem(12);
+        height: convert-in-rem(12);
+        background-color: $clr-dispatched-status;
+        border-radius: 50%;
+        margin-left: convert-in-rem(12);
+    }
+    .x-list {
+        .c-case-listing__case-wrapper {
+            @include padding(8px 8px 8px 16px);
+        }
+        .mdc-card__primary-action {
+            span {
+                padding-bottom: 0px;
+            }
+        }
+        .mdc-layout-grid {
+            &__inner {
+                @media ($tablet-min) {
+                    grid-gap: 16px;
+                }
+            }
+        }
+    }
+    &__case-req-btn {
+        @include font-family-medium();
+        @include mdc-button-filled-accessible($clr-link);
+        text-transform: none;
+        line-height: convert-in-rem(20);
+    }
+    &__footer {
+        text-align: right;
+        background-color: rgba(255, 255, 255, 0.9);
+        height: convert-in-rem(68);
+        box-sizing: border-box;
+        @include padding(16px);
+    }
+    &__cases-feedback {
+        @include padding(23px 18px 18px);
+        justify-content: flex-end;
+        button {
+            @include font-family-medium();
+            @include font-size(14px);
+            @include line-height(20px);
+            background-color: $clr-transparent;
+            color: $clr-link;
+            border: 0;
+            padding: 0;
+            text-align: right;
+            cursor: pointer;
+        }
+    }
+    .right-padding-0 {
+        padding-right: 0;
+    }
+}

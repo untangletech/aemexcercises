@@ -1,0 +1,13 @@
+.c-device-case-listing{
+    &__cases-container{
+        margin-top: convert-in-rem(56);
+    }
+    .x-header__btn{
+        height:100%;
+    }
+    .x-list{
+        .c-case-listing__case-wrapper{
+            @include padding(8px 8px 8px 16px);
+        }
+    }
+}

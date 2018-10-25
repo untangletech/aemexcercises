@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <artifactId>untangle</artifactId>
+        <groupId>untangle</groupId>
+  		 <version>${buildversion}</version>
+    </parent>
+    
+	
+	<groupId>untangle.complete</groupId>
+	<artifactId>untangle-complete-package</artifactId>
+	<packaging>content-package</packaging>
+	<name>
+		Untangle Complete :: Package
+	</name>
+	<description>Embedding all Untangle CQ packages into one big package</description>
+
+	<properties>
+        <!-- this is an artificial package root, because this package only consists out of packages -->
+        <package.root>/apps/untangle/complete</package.root>
+    </properties>
+	
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <configuration>
+			          <instructions>
+			           <!-- Import any version of javax.inject to allow running on multiple versions of AEM -->
+			            <Import-Package>javax.inject;version=0.0.0,*</Import-Package>			
+			             <Sling-Model-Packages>
+			                          com.untangle.core
+			              </Sling-Model-Packages>
+			         </instructions>
+                    <subPackages>
+                        <subPackage>
+                            <!-- include every package in dependencies -->
+                            <type>content-package</type>
+                            <filter>true</filter>
+                        </subPackage>
+                    </subPackages>
+                </configuration>
+            </plugin>
+
+            <!-- checks all xml files (within view projects) for well-formedness -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+	
+	<!-- list all the packages as dependencies here, which should be embedded in this package -->
+    <dependencies>
+
+        <dependency>
+            <artifactId>untangle-core-package</artifactId>
+            <groupId>untangle.core</groupId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
+		
+		<dependency>
+            <artifactId>untangle-ui-package</artifactId>
+            <groupId>untangle.ui</groupId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
+		
+
+     
+        <dependency>
+            <artifactId>untangle-config-package</artifactId>
+            <groupId>untangle.config</groupId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
+					
+    </dependencies>
+	
+</project>

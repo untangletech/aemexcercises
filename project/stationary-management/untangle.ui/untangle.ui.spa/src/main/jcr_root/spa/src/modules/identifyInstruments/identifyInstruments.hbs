@@ -1,0 +1,20 @@
+<div class="animate-appear">
+  <header class="mdc-toolbar mdc-toolbar--fixed x-header">
+    <div class="mdc-toolbar__row">
+      <button class="mdc-icon-button material-icons x-header__btn js-back" data-navigate-to="{{#if qrPresent}}qRCodeInstrument{{else}}caseListing{{/if}}">arrow_back</button>  
+      <section class="mdc-toolbar__section x-header__section">
+          <span class="mdc-top-app-bar__title x-header__title">{{i18keyText 'cmms_identifyInstruments.identifyProblems'}}</span>
+      </section>
+    </div>
+    <div>
+          <div class="mdc-text-field mdc-text-field--box x-search js-instruments-search mdc-text-field--with-trailing-icon">
+              <input type="text" class="mdc-text-field__input search-input" id="searchInput" name="search" placeholder="{{i18keyText 'cmms_identifyinstrument.placeholder'}}">
+              <label class="mdc-floating-label x-search__label" for="searchInput">{{i18keyText 'cmms_identifyinstrument.search'}}</label>
+              <i class="material-icons mdc-text-field__icon">search</i>
+              <div class="mdc-line-ripple x-search__icon"></div>
+          </div>
+        </div>
+  </header>
+  <main class="c-instruments js-instrument-listing">
+  </main>
+</div>

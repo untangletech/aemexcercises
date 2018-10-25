@@ -1,0 +1,25 @@
+.c-case-search {
+    &__text-field {
+        margin-left: convert-in-rem(13);
+        font-size: convert-in-rem(16);
+        line-height: convert-in-rem(20);
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        font-family: $font-roboto;
+        &::placeholder {
+            color: $clr-placeholder;
+            padding-left: convert-in-rem(2);
+        }
+    }
+    &__cases-container {
+        margin-top: convert-in-rem(60);
+        @media (min-width: 768px) {
+            margin-top: convert-in-rem(68);
+        }
+    }
+    .x-header__btn {
+        height: 100%;
+    }
+}

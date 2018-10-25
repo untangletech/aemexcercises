@@ -1,0 +1,54 @@
+ .c-errorPage {
+     background-color: $clr-white;
+     &__header {
+         background-color: $clr-white;
+         color: $clr-light-black;
+         box-shadow: none;
+     }
+     &__container {
+         background-color: $clr-white;
+         margin: convert-in-rem(0) convert-in-rem(16);
+         padding-top: 0;
+         height: 100%;
+         position: relative;
+         .back-start-btn {
+             @include mdc-button-ink-color($clr-link);
+             @include font-size(14px);
+             @include line-height(20px);
+             letter-spacing: 0;
+             font-family: $font-roboto-medium;
+             float: right;
+             text-transform: capitalize;
+             margin-top: convert-in-rem(50);
+             padding: 0 convert-in-rem(12);
+         }
+     }
+     &__detail {
+         width: 100%;
+         position: absolute;
+         top: convert-in-rem(150);
+     }
+     &__pagetitle {
+         font-family: $font-roboto-medium;
+         color: $clr-light-black;
+         padding-left: 0;
+     }
+     &__errortitle {
+         font-family: $font-roboto-medium;
+         @include font-size(20px);
+         text-align: left;
+         line-height: convert-in-rem(25);
+     }
+     &__description {
+         // position: absolute;
+         // top: convert-in-rem(219);
+         margin-top: convert-in-rem(16);
+         line-height: convert-in-rem(25);
+         @include font-size(16px);
+         text-align: left;
+         color: $clr-light-black;
+     }
+     &__row {
+         text-align: center;
+     }
+ }
