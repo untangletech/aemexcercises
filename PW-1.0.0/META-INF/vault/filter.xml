@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/personal-website"/>
+    <filter root="/conf/personal-website"/>
+    <filter root="/content/personal-website"/>
+    <filter root="/content/untangle-exercises"/>
+</workspaceFilter>
