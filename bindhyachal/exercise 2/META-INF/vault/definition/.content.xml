@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:vlt="http://www.day.com/jcr/vault/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-    jcr:created="{Date}2018-11-12T10:05:32.335+05:30"
+<jcr:root xmlns:vlt="http://www.day.com/jcr/vault/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:created="{Date}2018-11-13T14:22:51.130+05:30"
     jcr:createdBy="admin"
-    jcr:lastModified="{Date}2018-11-12T10:05:32.335+05:30"
+    jcr:description=""
+    jcr:lastModified="{Date}2018-11-13T14:22:51.130+05:30"
     jcr:lastModifiedBy="admin"
     jcr:primaryType="vlt:PackageDefinition"
     buildCount="1"
+    builtWith="Adobe Experience Manager-6.4.0"
     group="my_packages"
-    lastUnwrapped="{Date}2018-11-12T10:05:32.335+05:30"
+    lastUnwrapped="{Date}2018-11-13T14:22:51.130+05:30"
     lastUnwrappedBy="admin"
-    lastWrapped="{Date}2018-11-12T10:05:32.335+05:30"
+    lastWrapped="{Date}2018-11-13T14:22:51.130+05:30"
     lastWrappedBy="admin"
-    name="componentsandTemplates"
-    version=""/>
+    name="backup"
+    version="">
+    <filter jcr:primaryType="nt:unstructured">
+        <f0
+            jcr:primaryType="nt:unstructured"
+            mode="replace"
+            root="/apps/aem-company"
+            rules="[]"/>
+        <f1
+            jcr:primaryType="nt:unstructured"
+            mode="replace"
+            root="/content/aem-company"
+            rules="[]"/>
+    </filter>
+</jcr:root>
