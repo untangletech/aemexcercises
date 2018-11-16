@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <wcm jcr:primaryType="nt:unstructured">
+        <foundation jcr:primaryType="nt:unstructured">
+            <components jcr:primaryType="nt:unstructured">
+                <responsivegrid jcr:primaryType="nt:unstructured">
+                    <policy_770912626447080
+                        jcr:lastModified="{Date}2018-09-24T12:01:14.055+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="personWebistePolicy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="group:We.Retail">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_770912626447080>
+                </responsivegrid>
+            </components>
+        </foundation>
+    </wcm>
+    <personal-website jcr:primaryType="nt:unstructured">
+        <components jcr:primaryType="nt:unstructured">
+            <Copy_x0020_of_x0020_content jcr:primaryType="nt:unstructured">
+                <heroimage jcr:primaryType="nt:unstructured"/>
+            </Copy_x0020_of_x0020_content>
+        </components>
+    </personal-website>
+    <weretail jcr:primaryType="nt:unstructured">
+        <components jcr:primaryType="nt:unstructured">
+            <content jcr:primaryType="nt:unstructured">
+                <breadcrumb jcr:primaryType="nt:unstructured">
+                    <policy_1537773227724
+                        jcr:lastModified="{Date}2018-09-24T12:44:07.243+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="addnewPolicy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        hideCurrent="false"
+                        showHidden="false"
+                        startLevel="1">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1537773227724>
+                </breadcrumb>
+            </content>
+        </components>
+    </weretail>
+</jcr:root>
