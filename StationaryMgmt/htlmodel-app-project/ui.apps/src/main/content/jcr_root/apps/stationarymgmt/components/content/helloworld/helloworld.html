@@ -1,0 +1,42 @@
+This is hello world component
+
+<pre data-sly-use.hello="com.htlmodel.cq.core.models.HelloWorldModel">
+	<p>HelloWorldModel says:
+    	${hello.message}
+     </p>
+ </pre>
+<form method="POST">
+                First Name  : <input type="text" name="firstName" id="firstName"/>
+    Second Name  : <input type="text" name="LastName" id="lastName"/>
+ 
+    <button type="button" id="submit">Submit Params</button>
+ 
+    <div id="paramDiv"></div>
+</form>
+ 
+ 
+<script>
+ 
+                                $('#submit').click(function(){
+                                                $.ajax(
+{
+                url : '/bin/testlogServlet',
+    type: 'POST',
+    data: {
+                firstName : $('#firstName').val(),
+        lastName: $('#lastName').val()
+    },
+    success: function (data,status,xhr) {  
+                                $('#paramDiv').html(data)
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+ 
+    }
+});
+ 
+                                })
+ 
+</script>
+
+
+
