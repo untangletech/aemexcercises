@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/llp"/>
+    <filter root="/conf/llp"/>
+    <filter root="/content/llp"/>
+</workspaceFilter>
