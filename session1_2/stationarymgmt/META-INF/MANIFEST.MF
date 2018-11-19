@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Content-Package-Roots: /conf/stationarymgt,/apps/stationarymgmt,/conte
+ nt/stationary-mgmt
+Content-Package-Type: mixed
+Content-Package-Id: my_packages:stationarymgmt
+
