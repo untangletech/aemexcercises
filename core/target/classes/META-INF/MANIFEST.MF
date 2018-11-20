@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1540450140654
+Build-Jdk: 1.8.0_181
+Built-By: manjain6
+Bundle-Description: Core bundle for htlmodel-app-project
+Bundle-ManifestVersion: 2
+Bundle-Name: htlmodel-app-project - Core
+Bundle-SymbolicName: com.htlmodel.cq.htlmodel-app-project.core
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.htlmodel.cq.core.models;uses:="javax.annotation,org.
+ apache.sling.api.resource,org.apache.sling.models.annotations";version=
+ "1.0.0"
+Import-Package: javax.annotation;resolution:=optional,org.apache.sling.a
+ pi.resource;resolution:=optional;version="[2.5,3)",org.apache.sling.mod
+ els.annotations;resolution:=optional;version="[1.4,2)",org.apache.sling
+ .models.annotations.injectorspecific;resolution:=optional;version="[1.1
+ ,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Sling-Model-Packages: com.htlmodel.cq.core.models
+Tool: Bnd-3.2.0.201605172007
