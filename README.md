@@ -1,4 +1,13 @@
 # aemexercises
+
+Session 5: 
+
+Create a Sling Servlet for the Get request and Log the request
+parameters in the Logger.
+
+Screenshots attached
+
+
 This is a code repository for checking in code for AEM Exercises
 
 Following is a quick guide on how to checkin the code in this repository
