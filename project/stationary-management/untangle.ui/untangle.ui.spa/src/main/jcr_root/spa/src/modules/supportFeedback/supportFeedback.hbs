@@ -1,0 +1,61 @@
+<div class="c-rating-feedback animate-appear">
+    <section class="mdc-toolbar mdc-toolbar--fixed x-header">
+        <div class="mdc-toolbar__row">
+            <div class="mdc-toolbar__section">
+                <span class="mdc-top-app-bar__title x-header__title">{{i18keyText 'cmms_supportfeedback.header'}}</span>
+            </div>
+        </div>
+    </section>
+    <main class="c-rating-feedback__container">
+        <div class="c-rating-feedback__row">
+            <div class="c-rating-feedback__title">{{i18keyText 'cmms_supportfeedback.rateService'}}</div>
+        </div>
+        <div class="c-rating-feedback__row">
+            <div class="c-rating-feedback__description">{{i18keyText 'cmms_supportfeedback.ratingText'}}</div>
+        </div>
+        <div class="c-rating-feedback__rating js-rating-container">
+            <li class = "star" data-value = '1'>
+                <i class="mdc-icon-button material-icons js-icon">star_border</i>
+            </li> 
+            <li class = "star" data-value = '2'>
+                <i class="mdc-icon-button material-icons js-icon">star_border</i>
+            </li>
+                <li class = "star" data-value = '3'>
+                <i class="mdc-icon-button material-icons js-icon">star_border</i>
+            </li>
+                <li class = "star" data-value = '4'>
+                <i class="mdc-icon-button material-icons js-icon">star_border</i>
+            </li>
+            <li class = "star" data-value = '5'>
+                <i class="mdc-icon-button material-icons js-icon">star_border</i>
+            </li>
+        </div>
+        <hr>
+        <section class = "c-rating-feedback__instrument-info js-caseDetailsSupport">
+        </section>	
+    </main>
+    <footer class="c-rating-feedback__footer js-rating-footer x-sticky-footer">
+        <button class="mdc-button specify-problem-footer__cancel-btn js-cancel-feedback" data-navigate-to="caseListing">{{i18keyText 'cmms_supportfeedback.notNow'}}</button>
+        
+        <button class="mdc-button mdc-button--raised specify-problem-footer__send-btn js-send-button" disabled="">
+            <i class="material-icons mdc-button__icon" aria-hidden="true">send</i>
+            {{i18keyText 'cmms_specifyproblem.send'}}
+        </button>
+    </footer>
+</div>
+<aside id="js-feedback-modal" class="mdc-dialog x-messageDialog" role="alertdialog" aria-describedby="x-messageDialog-description">
+  <div class="mdc-dialog__surface x-messageDialog__surface">
+    <header class="mdc-dialog__header">
+      <span class="mdc-dialog__header__title x-messageDialog__title">
+        {{i18keyText 'cmms_supportfeedback.errorhead'}}
+      </span>
+    </header>
+    <section id="x-messageDialog-description" class="mdc-dialog__body x-messageDialog__body">
+      {{i18keyText 'cmms_supportfeedback.errordesc'}}
+    </section>
+    <footer class="mdc-dialog__footer">
+      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">{{i18keyText 'cmms_supportfeedback.ok'}}</button>
+    </footer>
+  </div>
+  <div class="mdc-dialog__backdrop"></div>
+</aside>

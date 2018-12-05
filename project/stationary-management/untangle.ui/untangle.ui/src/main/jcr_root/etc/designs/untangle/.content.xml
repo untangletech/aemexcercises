@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+	xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	xmlns:nt="http://www.jcp.org/jcr/nt/1.0" jcr:primaryType="cq:Page">
+	<clientlibs />
+	<favicon.ico />
+	<jcr:content cq:lastModified="{Date}2017-06-01T19:09:19.044+05:30"
+		cq:lastModifiedBy="admin" jcr:primaryType="nt:unstructured" jcr:title="Multi channel Design Page"
+		sling:resourceType="wcm/core/components/designer">
+		<blankhtmlpage jcr:primaryType="nt:unstructured">
+				<par
+                jcr:primaryType="nt:unstructured"
+                components="group:Multichannel Component Group">
+                <section jcr:primaryType="nt:unstructured" />
+				</par>
+		</blankhtmlpage>
+		
+	</jcr:content>
+</jcr:root>

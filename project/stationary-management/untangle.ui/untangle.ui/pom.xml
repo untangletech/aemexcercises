@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>untangle-ui</artifactId>
+        <groupId>untangle.ui</groupId>
+        <version>${buildversion}</version>
+    </parent>
+    <artifactId>untangle-ui-package</artifactId>
+
+    <packaging>war</packaging>
+    <name>untangle AEM :: Package</name>
+	
+    <build>
+        <!-- Only needed for Sonar-JS-Plugin until http://jira.codehaus.org/browse/SONARPLUGINS-1802 is solved -->
+        <sourceDirectory>src/main/jcr_root</sourceDirectory>
+
+        <plugins>
+            <!-- creates and deploys packages -->
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <configuration>
+				    <builtContentDirectory>target/package/jcr_root</builtContentDirectory>
+                    <embeddedTarget>/etc/packages/Untangle</embeddedTarget>
+                    <filters>
+                        <!-- rewriter configuration for PDF generation -->
+						<filter>
+							<root>/apps/untangle</root>
+							<excludes>
+								<exclude>/apps/untangle/install</exclude>
+								<exclude>/apps/untangle/i18n</exclude>
+								<exclude>/apps/untangle/untangle_config</exclude>
+							</excludes>
+						</filter>
+						<filter>
+                            <root>/apps/dam/content/asseteditors</root>
+                        </filter>
+                        <!-- etc/tags needs to be extended for the artificial language boost-->
+
+                        <!-- the artificial language must have a reasonable label-->
+                        <filter>
+                            <root>/apps/wcm/core/resources/languages</root>
+                        </filter>						
+						<filter>
+                            <root>/etc/designs/untangle</root>							
+						</filter>
+                    </filters>
+                  <subPackages>
+                        <subPackage>
+                            <!-- include every package in dependencies -->
+                            <type>content-package</type>
+                            <filter>true</filter>
+                        </subPackage>
+                    </subPackages>
+                </configuration>
+            </plugin> 
+
+            <!-- checks all xml files (within view projects) for well-formedness -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+            </plugin>
+            <!-- static code analysis for javascript <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>jslint-maven-plugin</artifactId> 
+                </plugin> -->
+			
+			<!-- Sass compiler 
+            <plugin>
+                <groupId>org.jasig.maven</groupId>
+                <artifactId>sass-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>update-stylesheets</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <resources>
+                        <resource>
+                            <source>
+                                <directory>${target.design.directory}/roche-header-lib/styles_sass</directory>
+                            </source>
+                            <destination>${target.design.directory}/roche-header-lib/styles</destination>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>-->
+			
+        </plugins>
+    </build>
+	
+	 <dependencies>
+  		<dependency>
+            <artifactId>untangle-ui-spa</artifactId>
+            <groupId>untangle.ui</groupId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
+              </dependencies>
+
+</project>

@@ -1,0 +1,180 @@
+.app__help-text {
+    bottom: -15%;
+    color: $clr-white;
+    position: absolute;
+    font-size: 18px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    user-select: none;
+    display: none;
+}
+
+.app__select-photos {
+    background: #737373;
+    background: -moz-linear-gradient(left,  #737373 0%, #374146 0%, #152732 0%, #21353b 15%, #2c383c 28%, #2d383c 42%, #243a3e 65%, #2c3b3e 100%, #a5b1b4 100%);
+    background: -webkit-linear-gradient(left,  #737373 0%,#374146 0%,#152732 0%,#21353b 15%,#2c383c 28%,#2d383c 42%,#243a3e 65%,#2c3b3e 100%,#a5b1b4 100%);
+    background: linear-gradient(to right,  #737373 0%,#374146 0%,#152732 0%,#21353b 15%,#2c383c 28%,#2d383c 42%,#243a3e 65%,#2c3b3e 100%,#a5b1b4 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#737373', endColorstr='#a5b1b4',GradientType=1 );
+    width: 100%;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    @include bottom(68px);
+    @include top(56px);
+    @media ($mobile-max-standard){
+        position: fixed;
+    }
+    &>img {
+        width: convert-in-rem(200);
+        height: convert-in-rem(200);
+        @media ($mobile-max-standard) and (orientation: landscape){
+            width: convert-in-rem(100);
+            height: convert-in-rem(100);
+        }
+    }
+    &>h3{
+        color: $clr-white;
+        margin-top: convert-in-rem(38);
+        line-height: convert-in-rem(20);
+        text-align: center;
+        padding: 0 convert-in-rem(16);
+    }
+}
+
+.app__dialog-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 11;
+}
+
+.camera__icon,
+.focus__icon {
+    position: relative;
+    @include left(10px);
+    display: none;
+}
+
+@-webkit-keyframes scanner {
+    0% {
+        bottom: 100%;
+    }
+    50% {
+        bottom: 0%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+@-moz-keyframes scanner {
+    0% {
+        bottom: 100%;
+    }
+    50% {
+        bottom: 0%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+@-o-keyframes scanner {
+    0% {
+        bottom: 100%;
+    }
+    50% {
+        bottom: 0%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+@keyframes scanner {
+    0% {
+        bottom: 100%;
+    }
+    50% {
+        bottom: 0%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+.custom-scanner {
+    width: 100%;
+    height: 2px;
+    background: #4CAF50;
+    position: absolute;
+    -webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    transition: all 200ms linear;
+    -webkit-animation: scanner 3s infinite linear;
+    -moz-animation: scanner 3s infinite linear;
+    -o-animation: scanner 3s infinite linear;
+    animation: scanner 3s infinite linear;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+#camera {
+    opacity: 0;
+}
+
+.no-support {
+    font-size: 20px;
+    text-align: center;
+}
+
+.app__overlay {
+    position: fixed;
+    @include top(-56px);
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-color: $clr-white;
+    border-width: 2px;
+    transition: all 200ms ease-in;
+    width: 90%;
+    height: 50%;
+    max-width: 360px;
+    max-height: 360px;
+    margin: auto;
+    border-radius: 2px;
+    @media ($mobile-max-standard) and (orientation: landscape){
+        height: convert-in-rem(120);
+    }
+}
+
+.app__layout-content {
+    @include bottom(65px);
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    @include top(56px);
+}
+
+video {
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+}

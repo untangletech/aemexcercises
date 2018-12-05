@@ -1,0 +1,27 @@
+<aside id="js-messageDialog"
+  class="mdc-dialog x-messageDialog"
+  role="alertdialog"
+  aria-describedby="x-messageDialog-description">
+  <div class="mdc-dialog__surface x-messageDialog__surface">
+    <header class="mdc-dialog__header x-messageDialog__header">
+      {{#if createCaseFailed}}
+      <span class="mdc-dialog__header__title x-messageDialog__title">
+        {{i18keyText 'cmms_confirmationPopup.headerFailure'}}
+      </span>
+      {{else}}
+      <span class="mdc-dialog__header__title x-messageDialog__title">
+        {{i18keyText 'cmms_confirmationPopup.header'}}
+      </span>
+      {{/if}}
+      
+    </header>
+    <section id="x-messageDialog-description" class="mdc-dialog__body x-messageDialog__body">
+      <p>{{i18keyText message}}</p>
+      <p class="js-caseId">{{i18keyText caseIdMessage}}<span class="x-messageDialog__text">{{caseID}}</span></p>
+    </section>
+    <footer class="mdc-dialog__footer">
+      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">{{i18keyText 'cmms_confirmationPopup.ok'}}</button>
+    </footer>
+  </div>
+  <div class="mdc-dialog__backdrop"></div>
+</aside>

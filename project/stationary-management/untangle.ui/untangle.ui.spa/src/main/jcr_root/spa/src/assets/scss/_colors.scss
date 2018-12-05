@@ -1,0 +1,26 @@
+ // Colors
+ $clr--background-base: #ECF0F4 !default;
+ $clr-white: #ffffff;
+ $clr-black: #000000;
+ $clr-light-black: #333333;
+ $clr-light-grey-text: #707070;
+ $clr-dispatched-status: #CC0033;
+ $clr-light-grey: #EFEFEF;
+ $clr-link: #0066CC; // buttons colors
+ $clr-btn-primary: $clr-link; // border colors
+ $clr-btn-purple: $clr-link; // border colors
+ $clr-separator: #BABABA; //  $mdc-theme-primary: $clr-white;
+ $clr-error: #CC0033;
+ $clr-grey-shadow: #BDBDBD;
+ $mdc-theme-primary:$clr-light-black;
+ $mdc-theme-secondary: $clr-link;
+ $mdc-theme-on-primary: $clr-light-black;
+ $mdc-theme-on-secondary: #442C2E;
+ $mdc-theme-surface: $clr-white; //for cards
+ $mdc-theme-on-surface: $clr-light-black; //for cards
+ $mdc-theme-background: #ECF0F4;
+ $mdc-theme-on-background: #442C2E;
+ $clr-footer-bkg: rgba(255, 255, 255, 0.7);
+ $clr-transparent: rgba(255, 255, 255, 0);
+ $clr-placeholder: #8D8D8D;
+ $clr-text-area-label:#f7f7f7;

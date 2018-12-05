@@ -1,0 +1,103 @@
+/* Function to change px to rem unit */
+
+@function convert-in-rem($size) {
+    $target-font: $size / $base-font-size;
+    @return $target-font+rem;
+}
+
+// Function to change px to rem unit
+@function convert-to-rem($args) {
+    $argsLength: length($args);
+    $result: "";
+    $remValue: "";
+    @for $index from 1 through $argsLength {
+        $currentValue: nth($args, $index);
+        @if ($currentValue==0 or $currentValue==0px) {
+            $remValue: $currentValue;
+            $result: #{$result + $remValue};
+        }
+        @else {
+            $remValue: nth($args, $index)/$font-html;
+            $result: #{$result + $remValue}rem;
+        }
+        @if ($index < $argsLength) {
+            $result: #{$result + " "};
+        }
+    }
+    @return $result;
+}
+
+/**
+  Media Queries
+
+  Usage:
+
+  .component{
+    // default styles
+    @include MQ(mobile | tablet | desktop | ...){
+      // Instructions
+    }
+    }
+*/
+
+// Media Queries, repurpose as per your needs
+@mixin MQ($dev-type) {
+	/** Not required in most cases as we're writing mobile-first*/
+	@if $dev-type==mobile {
+		@media only screen and (min-width: 320px) {
+			@content;
+		}
+	}
+
+	@else if $dev-type==mobilelandscape {
+		@media only screen and (min-device-width: 320px) and (max-device-width: 767px) and (orientation: landscape){
+			@content;
+		}
+	}
+
+		/* Tablet only */
+	@else if $dev-type==tablet {
+		@media only screen and (min-width: 768px) {
+			@content;
+		}
+	}
+		/* Desktop only */
+	@else if $dev-type==desktop {
+		// 992px and up... laptop, common desktop screens...
+		// 992px(64em), 1120px(70em)
+		@media only screen and (min-width: 992px) {
+			@content;
+		}
+	}
+	@else if $dev-type==desktop-ws {
+		// 1300px - 81.250em
+		@media only screen and (min-width: 1300px) {
+			@content;
+		}
+	}
+	@else if $dev-type==tabletonly {
+		@media only screen and (min-width: 768px) and (max-width: 991px) {
+			@content;
+		}
+	}
+	@else if $dev-type==tabletlandscape {
+		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape){
+			@content;
+		}
+	}
+	@else if $dev-type==mobileonly {
+		@media only screen and (min-width: 320px) and (max-width: 767px) {
+			@content;
+		}
+	}
+	@else if $dev-type==mobileandtablet {
+		@media only screen and (min-width: 320px) and (max-width: 991px) {
+			@content;
+		}
+	}
+	@else if $dev-type==phablet {
+		@media only screen and (min-width: 480px) and (max-width: 767px) {
+			@content;
+		}
+	}
+}
