@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>inventorymgmt</groupId>
+        <artifactId>inventorymgmt</artifactId>
+         <version>${buildversion}</version>
+    </parent>
+
+    <artifactId>inventorymgmt-core</artifactId>
+    <groupId>inventorymgmt.core</groupId>
+    <packaging>pom</packaging>
+
+    <name>inventorymgmt:: Core</name>
+    <description>The Base CQ components which are used in the inventorymgmt websites</description>
+
+    <properties>
+        <package.root>/apps/inventorymgmt</package.root>
+    </properties>
+
+    <modules>
+		
+	    <module>inventorymgmt.core</module>
+		<module>inventorymgmt.core.package</module>
+    </modules>
+</project>

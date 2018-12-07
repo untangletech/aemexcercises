@@ -1,0 +1,86 @@
+<div class="c-case-detail__heading">{{serviceCases.devices.materials.name}}</div>
+<div class="c-case-detail__info">
+    <div class="c-case-detail__info-label">{{i18keyText 'cmms_casedetail.instrumentSerialNumber'}}</div>
+    <div class="c-case-detail__info-description">{{serviceCases.devices.serialNo}}</div>
+</div>
+<div class="c-case-detail__info">
+    <div class="c-case-detail__info-label">{{i18keyText 'cmms_casedetail.nameOfOrganization'}}</div>
+    <div class="c-case-detail__info-description">{{serviceCases.accounts.name}}</div>
+</div>
+{{#if detFeedbackBtn}}
+<div class="c-case-detail__info">
+    <div class="c-case-detail__feedback-btn c-case-listing__cases-feedback">
+        <button class="js-caseDet-feedback" data-case-id="{{serviceCases.id}}">{{i18keyText 'cmms_caselisting.feedbackBtn'}}</button>
+    </div>
+</div>
+{{/if}}
+<hr />
+<div class="c-case-detail__info">
+    <div class="c-case-detail__info-label">{{i18keyText 'cmms_casedetail.RequestID'}}</div>
+    <div class="c-case-detail__info-description">{{serviceCases.id}}</div>
+</div>
+<div class="c-case-detail__info c-case-detail__info--status">
+    <div class="c-case-detail__info-label">{{i18keyText 'cmms_casedetail.status'}}</div>
+    
+        <div class="c-case-detail__info-description">
+            <div class="c-case-detail__list">
+                <div class="c-case-detail__list--left c-case-detail__info-label">
+                    <span class="x-align-left">
+                        {{shortDate serviceCases.createdDate}}
+                    </span>
+                    <br>
+                    {{#ifCond serviceCases.dispatchedDate '||' serviceCases.closedDate}}
+                    <i class="material-icons c-case-detail__down-arrow">
+                        arrow_right_alt
+                    </i>
+                    {{/ifCond}}
+                </div>
+                <div class="c-case-detail__list--right">{{i18keyText 'cmms_casestatus.opened'}}</div>
+            </div>
+        </div>
+        {{#if serviceCases.dispatchedDate}}
+        <div class="c-case-detail__info-description">
+            <div class="c-case-detail__list">
+                <div class="c-case-detail__list--left c-case-detail__info-label">
+                    <span class="x-align-left">{{shortDate serviceCases.dispatchedDate}}</span>
+                    <br>
+                    {{#if serviceCases.closedDate}}
+                    <i class="material-icons c-case-detail__down-arrow">
+                        arrow_right_alt
+                    </i>
+                    {{/if}}
+                </div>
+                <div class="c-case-detail__list--right">{{i18keyText 'cmms_casestatus.dispatched'}}</div>
+            </div>
+        </div>
+        {{/if}}
+        {{#if serviceCases.closedDate}}
+        <div class="c-case-detail__info-description">
+            <div class="c-case-detail__list">
+                <div class="c-case-detail__list--left c-case-detail__info-label">
+                    <span class="x-align-left">
+                        {{shortDate serviceCases.closedDate}}
+                    </span>
+                </div>
+                <div class="c-case-detail__list--right">{{i18keyText 'cmms_casestatus.closed'}}</div>
+            </div>
+        </div>
+        {{/if}}
+    
+</div>
+<div class="c-case-detail__info">
+    <div class="c-case-detail__info-label">{{i18keyText 'cmms_casedetail.subject'}}</div>
+    <div class="c-case-detail__info-description">{{serviceCases.subject}}</div>
+</div>
+<div class="c-case-detail__info">
+    <div class="c-case-detail__info-label">{{i18keyText 'cmms_casedetail.description'}}</div>
+    <div class="c-case-detail__info-description c-description-wrap">{{serviceCases.description}}</div>
+</div>
+<div class="c-case-detail__info">
+    <div class="c-case-detail__info-label">{{i18keyText 'cmms_casedetail.createdOn'}}</div>
+    <div class="c-case-detail__info-description">{{shortDate serviceCases.createdDate ' - '}}</div>
+</div>
+<div class="c-case-detail__info">
+    <div class="c-case-detail__info-label">{{i18keyText 'cmms_casedetail.createdBy'}}</div>
+    <div class="c-case-detail__info-description">{{serviceCases.createdBy.name}}</div>
+</div>

@@ -1,0 +1,91 @@
+.c-case-detail {
+    &__dialog {
+        &.mdc-dialog--open {
+            animation: mdc-animation-enter(/* $name: */
+            slideInUp, /* $duration: */
+            350ms);
+        }
+    }
+    &__list {
+        position: relative;
+        overflow: auto;
+        &--left {
+            @include margin-right(16px);
+            @include max-width(96px);
+            float: left;
+            overflow: hidden;
+            line-height: 20px;
+            .x-align-left {
+                float: left;
+            }
+        }
+        &--right {
+            @include line-height(24px);
+        }
+    }
+    &__down-arrow {
+        @include margin-left(13px);
+        transform: rotate(90deg) scaleX(2);
+        color: $clr-separator;
+        font-size: 16px;
+        line-height: 2;
+    }
+    &__dialog-content {
+        width: 100%;
+        height: 100%;
+        background: $mdc-theme-background;
+        @include background-gradient(to bottom, #cccccc 0%, #e2e2e2 4%, #e1e1e1 4%, #eeeeee 7%, #f8f8f8 11%, #ffffff 16%, #ffffff 100%);
+        .mdc-dialog--animating & {
+            transition: opacity 200ms 50ms cubic-bezier(0, 0, 0.2, 1), transform 200ms 50ms cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+    &__dialog-body {
+        padding: 0 convert-in-rem(16);
+        color: $clr-light-black;
+        margin-top: 0;
+        height: 100%;
+        max-height: 100%;
+        border-top: none;
+    }
+    &__dialog-header {
+        padding: convert-in-rem(10) convert-in-rem(7);
+        margin-bottom: convert-in-rem(9);
+    }
+    &__heading {
+        @include font-family-medium();
+        @include font-size(20px);
+        @include line-height(24px);
+        margin-bottom: 24px;
+        padding: 0 convert-in-rem(9);
+    }
+    &__info {
+        margin-bottom: convert-in-rem(16);
+        padding: 0 9px;
+        &--status {
+            @include margin(28px 0);
+        }
+    }
+    &__info-label {
+        @include line-height(20px); // margin-bottom: convert-in-rem(4);
+        font-size: 14px;
+        color: $clr-light-grey-text;
+    }
+    &__info-description {
+        @include line-height(24px);
+        font-size: 16px;
+        &.c-description-wrap {
+            white-space: pre-wrap;
+        }
+    }
+    hr {
+        @include margin(22px 0);
+    }
+    .x-align-leftDate {
+        text-align: left;
+        float: left;
+    }
+    &__feedback-btn {
+        @include padding(5px 0 4px);
+        text-align: right;
+    }
+}

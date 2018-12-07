@@ -1,0 +1,753 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>inventorymgmt</artifactId>
+	<groupId>inventorymgmt</groupId>
+	<packaging>pom</packaging>
+	<name>inventorymgmt Sample Project</name>
+	<version>${buildversion}</version>
+
+
+	<modules>
+		<module>inventorymgmt.core</module>
+		<module>inventorymgmt.ui</module>
+		<module>inventorymgmt.config</module>
+		<module>inventorymgmt.complete</module>
+	</modules>
+
+	<!-- Properties -->
+	<properties>
+		<buildversion>1.1.1-SNAPSHOT</buildversion>
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/coverage-reports/target/jacoco.exec</sonar.jacoco.reportPath>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<package.name>${project.artifactId}</package.name>
+		<package.group>inventorymgmt</package.group>
+		<package.root>/apps/inventorymgmt</package.root>
+		<package.install.root>${package.root}</package.install.root>
+		<crx.workspace>crx.default</crx.workspace>
+		<package.jcr.root>src/main/jcr_root</package.jcr.root>
+
+		<!-- Author Instance Details -->
+		<crx.host>http://localhost</crx.host>
+		<crx.port>4502</crx.port>
+		<crx.username>admin</crx.username>
+		<crx.password>admin</crx.password>
+		<crx.server>${crx.host}:${crx.port}</crx.server>
+		<!-- Publish Instance Details -->
+		<publish.crx.host>http://localhost</publish.crx.host>
+		<publish.crx.port>4503</publish.crx.port>
+		<publish.crx.server>${publish.crx.host}:${publish.crx.port}</publish.crx.server>
+		<publish.crx.username>admin</publish.crx.username>
+		<publish.crx.password>admin</publish.crx.password>
+	</properties>
+
+	<!-- Build Configuration -->
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.7.9</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>default-report</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<destFile>${sonar.jacoco.reportPath}</destFile>
+					</configuration>
+				</plugin>
+
+				<!-- creates OSGi bundles -->
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>2.5.3</version>
+					<extensions>true</extensions>
+					<inherited>true</inherited>
+					<configuration>
+						<instructions>
+							<!-- enrich project description by build information -->
+							<Bundle-Description>${project.description} - ${build.details}</Bundle-Description>
+						</instructions>
+					</configuration>
+				</plugin>
+
+				<!-- deploys OSGi bundles to Felix, http://sling.apache.org/site/sling.html -->
+				<plugin>
+					<groupId>org.apache.sling</groupId>
+					<artifactId>maven-sling-plugin</artifactId>
+					<version>2.1.0</version>
+					<configuration>
+						<slingUrl>${crx.server}/crx/repository/${crx.workspace}${package.install.root}/install</slingUrl>
+						<usePut>true</usePut>
+						<user>${crx.username}</user>
+						<password>${crx.password}</password>
+					</configuration>
+				</plugin>
+
+				<!-- creates and deploys CRX packages, http://dev.day.com/docs/en/cq/current/core/how_to/how_to_use_the_vlttool/vlt-mavenplugin.html -->
+				<plugin>
+					<groupId>com.day.jcr.vault</groupId>
+					<artifactId>content-package-maven-plugin</artifactId>
+					<version>0.0.20</version>
+					<extensions>true</extensions>
+					<inherited>true</inherited>
+					<configuration>
+						<userId>${crx.username}</userId>
+						<password>${crx.password}</password>
+						<workspace>${crx.workspace}</workspace>
+						<targetURL>${crx.server}/crx/packmgr/service.jsp</targetURL>
+						<!-- <classesDirectory>${project.build.directory}/jspc-plugin-generated</classesDirectory> -->
+						<useProxy>false</useProxy>
+						<failOnError>true</failOnError>
+						<!-- the directory which is created by the resource phase (see resource 
+							section below) -->
+						<builtContentDirectory>target/package/jcr_root</builtContentDirectory>
+						<!-- <workDirectory>target/package</workDirectory> -->
+						<group>${package.group}</group>
+						<name>${package.name}</name>
+						<!-- enrich description with build informations -->
+						<properties>
+							<description>${project.description} - ${build.details}</description>
+						</properties>
+						<embeddedTarget>${package.install.root}/install</embeddedTarget>
+						<filters>
+							<filter>
+								<root>${package.root}</root>
+							</filter>
+						</filters>
+						<embeddeds>
+							<embedded>
+								<!-- embed everything which has the same group id as this project 
+									itself, nevertheless it only filters from the list of given dependencies. -->
+								<groupId>${project.groupId}</groupId>
+							</embedded>
+							<embedded>
+								<!-- embed everything which has the same group id as this project 
+									itself, nevertheless it only filters from the list of given dependencies. -->
+								<groupId>org.apache.sling</groupId>
+								<artifactId>org.apache.sling.dynamic-include</artifactId>
+							</embedded>
+						</embeddeds>
+					</configuration>
+					<executions>
+						<execution>
+							<!-- packaging needs to be explicitly defined, since content-packages 
+								normally have WAR packaging -->
+							<id>default-package</id>
+							<goals>
+								<goal>package</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- to compile the JSPs during the maven build, http://sling.apache.org/site/jspc.html -->
+				<plugin>
+					<groupId>org.apache.sling</groupId>
+					<artifactId>maven-jspc-plugin</artifactId>
+					<version>2.0.6</version>
+					<configuration>
+						<sourceDirectory>${basedir}/${package.jcr.root}</sourceDirectory>
+					</configuration>
+					<executions>
+						<execution>
+							<id>compile-jsp</id>
+							<goals>
+								<goal>jspc</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<!-- the packaging of the content-packages is war to make Eclipse support 
+						you more -->
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.3</version>
+					<inherited>true</inherited>
+					<configuration>
+						<overlays>
+							<overlay />
+						</overlays>
+						<packagingExcludes>**</packagingExcludes>
+						<primaryArtifact>false</primaryArtifact>
+						<warSourceDirectory>${package.jcr.root}</warSourceDirectory>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+
+				</plugin>
+
+				<!-- generates OSGI services from annotations (http://felix.apache.org/site/apache-felix-maven-scr-plugin.html) -->
+				<!-- Apache Felix SCR Plugin -->
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-scr-plugin</artifactId>
+					<version>1.20.0</version>
+					<executions>
+						<execution>
+							<id>generate-scr-scrdescriptor</id>
+							<goals>
+								<goal>scr</goal>
+							</goals>
+							<configuration>
+								<!-- Private service properties for all services. -->
+								<properties>
+									<service.vendor>Roche</service.vendor>
+								</properties>
+							</configuration>
+						</execution>
+					</executions>
+					<configuration>
+						<outputDirectory>${project.build.directory}/classes</outputDirectory>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.slf4j</groupId>
+							<artifactId>slf4j-simple</artifactId>
+							<version>1.5.11</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<!-- checks all xml files (within view projects) for well-formedness -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>xml-maven-plugin</artifactId>
+					<version>1.0</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>validate</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<validationSets>
+							<validationSet>
+								<dir>${package.jcr.root}</dir>
+								<includes>
+									<include>**\*.xml</include>
+								</includes>
+								<excludes>
+									<exclude>**\node_modules\**</exclude>
+									<exclude>**\bower_components\**</exclude>
+								</excludes>
+							</validationSet>
+						</validationSets>
+					</configuration>
+				</plugin>
+
+				<!-- Require Java 7 or higher for building -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>1.4.1</version>
+					<executions>
+						<execution>
+							<id>default-cli</id>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+							<configuration>
+								<rules>
+									<requireMavenVersion>
+										<message>Project must be built with Maven 3.0.3 or higher</message>
+										<version>3.0.3</version>
+									</requireMavenVersion>
+									<requireJavaVersion>
+										<message>Project must be compiled with Java 8 or higher</message>
+										<version>[1.8.0,)</version>
+									</requireJavaVersion>
+								</rules>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. This removes scr and 
+					the content-package plugin from the m2e build lifecycle -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.day.jcr.vault</groupId>
+										<artifactId>content-package-maven-plugin</artifactId>
+										<versionRange>[0.0.20,)</versionRange>
+										<goals>
+											<goal>check-signature</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.2.1</version>
+					<inherited>true</inherited>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.3.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.14.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.9</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.7</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jvnet.jaxb2.maven2</groupId>
+					<artifactId>maven-jaxb2-plugin</artifactId>
+					<version>0.8.3</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<!-- as long as profile activation does not work, we need some explicit 
+			plugins for all packagings -->
+		<plugins>
+			<!-- prevent creating war files during package lifecycle to improve speed, 
+				see http://stackoverflow.com/questions/352612/how-to-get-maven-to-run-warexploded-but-not-warwar 
+				also consider https://bugs.eclipse.org/bugs/show_bug.cgi?id=404175 as for 
+				m2e-wtp we need that being connected to the default phase -->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-war</id>
+						<phase>${war.configuration.phase}</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<excludePackageNames>
+						*.impl
+					</excludePackageNames>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-project-info-reports-plugin</artifactId>
+							<version>2.7</version>
+							<configuration>
+								<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
+								<dependencyLocationsEnabled>true</dependencyLocationsEnabled>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>2.9.1</version>
+						</plugin>
+					</reportPlugins>
+				</configuration>
+				<dependencies>
+					<dependency><!-- add support for ssh/scp -->
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>1.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+
+		<!-- this resources section does only apply to content packages, since 
+			the given directory exists only in WAR packages -->
+		<resources>
+			<!-- copy everything what should be contained in the package to target/package -->
+			<resource>
+				<directory>${package.jcr.root}</directory>
+				<targetPath>${project.build.directory}/package/jcr_root</targetPath>
+				<excludes>
+					<!-- exclude everything what belongs to vlt and Mac as well as WEB-INF -->
+					<exclude>**/*.vlt</exclude>
+					<exclude>**/*.git</exclude>
+					<exclude>**/*.DS_Store</exclude>
+					<exclude>WEB-INF/**</exclude>
+					<!-- don't copy META-INF since it is set in the content-package-maven-plugin 
+						configuration -->
+					<exclude>META-INF/**</exclude>
+					<!-- never copy any files which resulted from VLT conflicts -->
+					<exclude>**/*.base</exclude>
+					<exclude>**/*.mine</exclude>
+					<exclude>**/*.theirs</exclude>
+					<!-- remove spa files and folder except app folder in spa -->
+					<exclude>spa/node_modules/**</exclude>
+					<!-- TODO: we should exclude everything ending with a revision, for 
+						example .r123, but there is no usefull pattern for that http://ant.apache.org/manual/dirtasks.html#patterns -->
+				</excludes>
+			</resource>
+			<!-- maven default -->
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+	</build>
+	<!-- Profiles -->
+	<profiles>
+
+		<!-- this profile is active if the build was triggered from Jenkins always 
+			fully reference the environment variables to make it work during release 
+			as well (http://jira.codehaus.org/browse/MRELEASE-406) -->
+		<profile>
+			<id>jenkins</id>
+			<activation>
+				<!-- this environment variable is set if Maven was called from Jenkins -->
+				<property>
+					<name>env.JENKINS_URL</name>
+				</property>
+			</activation>
+			<properties>
+				<build.details>Build: ${env.BUILD_NUMBER}, ID: ${env.BUILD_ID}, GIT
+					rev: ${env.GIT_COMMIT} GIT branch : ${GIT_BRANCH}</build.details>
+			</properties>
+		</profile>
+
+		<!-- this profile is active if the build was not triggered from Jenkins -->
+		<profile>
+			<id>no-jenkins</id>
+			<activation>
+				<property>
+					<name>!env.JENKINS_URL</name>
+				</property>
+			</activation>
+			<properties>
+				<build.details>Build: ?? (local build)</build.details>
+			</properties>
+		</profile>
+
+		<profile>
+			<!-- Use this profile to install the OSGi bundle automatically, during 
+				development -->
+			<id>autoInstallBundle</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.sling</groupId>
+							<artifactId>maven-sling-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>install-bundle</id>
+									<goals>
+										<goal>install</goal>
+									</goals>
+								</execution>
+							</executions>
+							<configuration>
+								<slingUrl>${crx.server}/crx/repository/${crx.workspace}${package.install.root}/install</slingUrl>
+								<usePut>true</usePut>
+								<user>${crx.username}</user>
+								<password>${crx.password}</password>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+
+		<profile>
+			<!-- Use this profile to install the OSGi bundle automatically, during 
+				development -->
+			<id>autoInstallBundlePublish</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.sling</groupId>
+							<artifactId>maven-sling-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>install-bundle</id>
+									<goals>
+										<goal>install</goal>
+									</goals>
+								</execution>
+							</executions>
+							<configuration>
+								<slingUrl>${publish.crx.server}/crx/repository/${crx.workspace}${package.install.root}/install</slingUrl>
+								<usePut>true</usePut>
+								<user>${publish.crx.username}</user>
+								<password>${publish.crx.password}</password>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+
+		<profile>
+			<!-- Use this profile to install the Packages automatically, during development -->
+			<id>autoInstallPackage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.day.jcr.vault</groupId>
+						<artifactId>content-package-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>install-content-package</id>
+								<phase>install</phase>
+								<goals>
+									<goal>install</goal>
+								</goals>
+								<configuration>
+									<failOnError>true</failOnError>
+									<targetURL>${crx.server}/crx/packmgr/service.jsp</targetURL>
+									<userId>${crx.username}</userId>
+									<password>${crx.password}</password>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>autoInstallPackagePublish</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.day.jcr.vault</groupId>
+						<artifactId>content-package-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>install-content-package-publish</id>
+								<phase>install</phase>
+								<goals>
+									<goal>install</goal>
+								</goals>
+								<configuration>
+									<targetURL>${publish.crx.server}/crx/packmgr/service.jsp</targetURL>
+									<username>${publish.crx.username}</username>
+									<password>${publish.crx.password}</password>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<!-- ====================================================================== -->
+	<!-- D E P E N D E N C I E S -->
+	<!-- ====================================================================== -->
+	<dependencyManagement>
+		<dependencies>
+			<!-- OSGi Dependencies -->
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.scr</artifactId>
+				<version>1.6.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>org.apache.felix.scr.annotations</artifactId>
+				<version>1.9.6</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.sling/org.apache.sling.api -->
+			<dependency>
+				<groupId>org.apache.sling</groupId>
+				<artifactId>org.apache.sling.api</artifactId>
+				<version>2.2.0</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.adobe.aem</groupId>
+				<artifactId>uber-jar</artifactId>
+				<version>6.2.0-SP1</version>
+				<classifier>apis</classifier>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>biz.aQute</groupId>
+				<artifactId>bndlib</artifactId>
+				<version>1.50.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.core</artifactId>
+				<version>4.2.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.compendium</artifactId>
+				<version>4.2.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+			<!-- Jersey related dependencies -->
+			<dependency>
+				<groupId>org.glassfish.jersey.core</groupId>
+				<artifactId>jersey-client</artifactId>
+				<version>2.25.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.core</groupId>
+				<artifactId>jersey-common</artifactId>
+				<version>2.25.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.hk2</groupId>
+				<artifactId>hk2-api</artifactId>
+				<version>2.4.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.hk2</groupId>
+				<artifactId>hk2-utils</artifactId>
+				<version>2.4.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.hk2</groupId>
+				<artifactId>hk2-locator</artifactId>
+				<version>2.4.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>javax.annotation-api</artifactId>
+				<version>1.3.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey.bundles.repackaged</groupId>
+				<artifactId>jersey-guava</artifactId>
+				<version>2.18</version>
+			</dependency>
+			<dependency>
+				<groupId>com.adobe.acs</groupId>
+				<artifactId>acs-aem-commons-bundle</artifactId>
+				<version>3.6.2</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.sling</groupId>
+				<artifactId>org.apache.sling.dynamic-include</artifactId>
+				<version>3.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>1.10.19</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.4</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.1</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<distributionManagement>
+		<repository>
+			<id>maven-releases</id>
+			<name>maven-releases</name>
+			<url>http://172.31.19.17:8081/nexus/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>maven-snapshots</id>
+			<name>snapshots</name>
+			<url>http://172.31.19.17:8081/nexus/repository/maven-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+</project>

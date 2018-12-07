@@ -1,0 +1,55 @@
+<div class="animate-appear">
+  <header class="mdc-toolbar mdc-toolbar--fixed x-header">
+    <div class="mdc-toolbar__row">
+      <button class="mdc-icon-button material-icons x-header__btn js-back" data-navigate-to="caseListing">arrow_back</button>  
+      <section class="mdc-toolbar__section x-header__section">
+          <span class="mdc-top-app-bar__title x-header__title">{{i18keyText 'cmms_identifyInstruments.identifyInstruments'}}</span>
+      </section>
+    </div>
+  </header>
+  <div class="mdc-top-app-bar--short-fixed-adjust">
+
+    <main class="app__layout-content">
+      <video autoplay playsinline></video>
+    </main>
+    <aside id="js-mdc-dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="my-mdc-dialog-label">
+      <div class="mdc-dialog__surface">
+        <header class="mdc-dialog__header">
+          <h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+            {{i18keyText 'cmms_identifyInstruments.QRCode'}}
+          </h2>
+        </header>
+        <section id="js-result" class="mdc-dialog__body">
+          {{i18keyText 'cmms_identifyInstruments.sampleQRCode'}}
+        </section>
+        <footer class="mdc-dialog__footer">
+          <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">{{i18keyText 'cmms_confirmationPopup.ok'}}</button>
+        </footer>
+      </div>
+      <div class="mdc-dialog__backdrop"></div>
+    </aside>
+    <!-- Snackbar -->
+    <div class="mdc-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+      <div class="mdc-snackbar__text"></div>
+      <div class="mdc-snackbar__action-wrapper">
+        <button type="button" class="mdc-snackbar__action-button"><span class="x-hidden" aria-hidden="true">button</span></button>
+      </div>
+    </div>  
+    <div class="app__overlay">
+      <div class="app__overlay-frame"></div>
+      <!-- Scanner animation -->
+      <div class="custom-scanner"></div>
+      <div class="app__help-text">{{i18keyText 'cmms_identifyInstruments.helpText'}}</div>
+    </div>
+      <div class="app__select-photos js-scanQR">
+      <img src="../../../../../etc/designs/cmms/clientlibs/media/qr-image.png" alt="Select QR from photos" />
+      <h3 class="QR-text">{{i18keyText 'cmms_identifyInstruments.QRCodeScanText'}}</h3>
+    </div>
+    <div class="x-sticky-footer x-app__footer">
+      <button class="mdc-button mdc-button--raised js-instrumentList">
+        {{i18keyText 'cmms_identifyInstruments.instrumentList'}}
+      </button>
+    </div>
+
+  </div>
+</div>
